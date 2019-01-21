@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gome.stage.mapper.rank.FacetGroupItemMapper" >
+
+    <sql id="selectFacetGroupItemSql">
+		b.id, b.catid catId, b.value, b.code, b.index, b.parent parentId, b.facetid facetId,
+		b.insertdate insertDate, b.creator, b.updator, b.updatedate updateDate, b.isshow
+	</sql>
+
+    <sql id="facetGroupItemTable">
+		t_facetgroupitem b
+	</sql>
+
+    <select id="listByWheres" parameterType="Map" resultType="com.gome.stage.entity.rank.FacetGroupItem">
+        SELECT
+        <include refid="selectFacetGroupItemSql"/>
+        FROM
+        <include refid="facetGroupItemTable"/>
+
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+            <if test="qcatid != null">AND b.catid=#{qcatid} </if>
+            <if test="qis_show != null">AND b.isshow=#{qis_show} </if>
+            <if test="parent != null">AND b.parent=#{parent} </if>
+            <if test="facetId != null">AND b.facetid=#{facetId} </if>
+
+        </trim>
+        ORDER BY b.index asc,b.updatedate desc
+    </select>
+
+    <select id="getById" parameterType="String" resultType="com.gome.stage.entity.rank.FacetGroupItem">
+        SELECT
+        <include refid="selectFacetGroupItemSql"/>
+        FROM
+        <include refid="facetGroupItemTable"/>
+
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+            <if test="id != null">AND b.id=#{id} </if>
+
+        </trim>
+    </select>
+
+</mapper>

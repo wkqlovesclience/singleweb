@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html style="font-size: 12.9375px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>热门产品大全 -${cindex} -国美手机版</title>
+    #set($gomesite = 'gome')
+    #set($pcdomainsite = '//www.' + $gomesite + '.com.cn')
+    #set($domainsite = '//m.' + $gomesite + '.com.cn')
+    #set($topicsite = '//m.' + $gomesite + '.com.cn/mtopic/')
+    <meta name="keywords" content="热门产品报价,热门产品大全,最新报价,价格,介绍,图片,评论,咨询" />
+    <meta name="description" content="国美手机版热门产品大全，为您提供电视、洗衣机、电脑、手机、数码、空调、电脑配件、生活电器、网络产品等商品报价、价格、介绍、图片、评论、咨询信息。" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="applicable-device" content="mobile">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="$pcdomainsite/topic/${cindex}.html" >
+    <!--# include virtual="/wapblock/topic_gome_css.html" -->
+</head>
+<body>
+<nav class="nav" id="wap_address">
+    <div class="toolbar" style="display:block">
+        <span class="nav_return nav_ico nav_back" id="nav_return" data-icon="0"></span>
+        <h2 class="ellipsis">商品专题</h2>
+    </div>
+</nav>
+<div class="g_head">
+    <a title="首页" href="$domainsite">首页</a>
+    <span>&gt;</span>
+    <a title="商品专题" href="$topicsite" class="on">商品专题</a>
+</div>
+<section class="s_tools">
+    <ul>
+        #foreach( $ckey in $cindex_key)
+            #if ($ckey == $cindex)
+                #set($indexClass = 'on')
+            #else
+                #set($indexClass = '')
+            #end
+            <li class="${indexClass}">
+                #if ( $ckey=='0' )
+                    <a title="0-9" href="$topicsite${ckey}.html">0-9</a>
+                #else
+                    <a title="${ckey}" href="$topicsite${ckey}.html">${ckey}</a>
+                #end
+            </li>
+        #end
+    </ul>
+</section>
+<section class="g_Tui mar_top">
+    <div id="keyword_list" style="height: 336px;">
+        <div class="tui_project mar_up">
+            #foreach($item in $cindexList)
+                #set($itempath = 'm' + ${item.titlePath})
+                #*#if($itempath.indexOf('topic') == 0)
+                    #set($itempath = 'm' + $itempath)
+                #end*#
+                <a title="${item.titleName}" href="${domainsite}/$itempath/">${item.titleName}</a>
+            #end
+        </div>
+    </div>
+    <div class="g_more">查看更多</div>
+</section>
+<footer class="common_footer">
+    <div class="foot_tips">
+        国美专题频道为您提供<span>热门产品报价,热门产品大全,最新报价,价格,介绍,图片,评论,咨询</span>等信息.<br>全部商品品质保证,严格把关保质期.国美,让您放心购物
+    </div>
+    <!--# include virtual="/wapblock/topic_gome_footer.html" -->
+</footer>
+<!--# include virtual="/wapblock/topic_gome_js.html" -->
+<script type="text/javascript">
+    s.pageName=document.title;
+    s.channel="商品专题";
+    s.prop1="商品专题:首页";
+    s.prop2="商品专题:首页";
+    s.prop3="商品专题:首页";
+    s.prop4="商品专题:字母";
+    var s_code=s.t();
+    if(s_code)document.write(s_code);
+</script>
+</body><div></div></html>

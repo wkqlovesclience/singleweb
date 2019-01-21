@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    #if($env=="live")
+        #set($staticdomain = "gomein.net.cn")
+        #set($gomedomain = "//www.gome.com.cn")
+        #set($wapgomedomain = "//m.gome.com.cn")
+    #else
+        #set($staticdomain = "gomein.net.cn")
+        #set($gomedomain = "//www.atguat.com.cn")
+        #set($wapgomedomain = "//m.gome.com.cn")
+    #end
+    #set($urlHead = "newtop10")
+    #set($urlEnd = "")
+<head>
+    #if($pageType=="hot"||$pageType=="new")
+        <title>【${rank_category_info.categoryName}${facetName}排行榜】${rank_category_info.categoryName}${facetName}推荐-国美排行榜</title>
+        <meta name="keywords" content="${facetName}${rank_category_info.categoryName}排行榜,${facetName}${rank_category_info.categoryName}品牌排行榜,${facetName}${rank_category_info.categoryName}推荐" />
+        <meta name="description" content="${facetName}${rank_category_info.categoryName}排行榜提供${facetName}${rank_category_info.categoryName}排名，为你推荐${facetName}${rank_category_info.categoryName}，告诉你${rank_category_info.categoryName}什么牌子好，还提供详细的参考信息。" />
+    #else
+        <title>【${facetName}${rank_category_info.categoryName}排行榜】_${facetName}${rank_category_info.categoryName}推荐_${facetName}${rank_category_info.categoryName}哪款好|怎么样-国美排行榜</title>
+        <meta name="keywords" content="${facetName}${rank_category_info.categoryName}排行榜,${facetName}${rank_category_info.categoryName}推荐,${facetName}${rank_category_info.categoryName}怎么样,${facetName}${rank_category_info.categoryName}哪款好" />
+        <meta name="description" content="${facetName}${rank_category_info.categoryName}排行榜提供${facetName}${rank_category_info.categoryName}排名，为你推荐受欢迎的${facetName}${rank_category_info.categoryName}，告诉你${facetName}${rank_category_info.categoryName}哪款好，怎么样,还提供详细的参考信息。" />
+    #end
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="applicable-device" content="pc">
+    #if($pageType=="hot"||$pageType=="new")
+        <meta http-equiv="mobile-agent" content="format=html5; url=${wapgomedomain}/${urlHead}/${pageType}-${facetInfo.cid}${urlEnd}">
+        <link rel="canonical" href="${gomedomain}/${urlHead}/${pageType}-${facetInfo.cid}${urlEnd}">
+        <link rel="alternate" media="only screen and(max-width: 640px)" href="${wapgomedomain}/${urlHead}/${pageType}-${facetInfo.cid}${urlEnd}">
+    #else
+        <meta http-equiv="mobile-agent" content="format=html5; url=${wapgomedomain}/${urlHead}/${pageType}-${facetInfo.id}${urlEnd}">
+        <link rel="canonical" href="${gomedomain}/${urlHead}/${pageType}-${facetInfo.id}${urlEnd}">
+        <link rel="alternate" media="only screen and(max-width: 640px)" href="${wapgomedomain}/${urlHead}/${pageType}-${facetInfo.id}${urlEnd}">
+    #end
+    <!--# include virtual="/n/common/global/global.html"-->
+    <link rel="stylesheet" href="<!--# include virtual='/n/common/default/style.html'-->">
+    <link href="//css.${staticdomain}/channels/pcrank/css/SEO-Ranking.css" rel="stylesheet">
+    <link rel="shortcut icon" href="//app.gomein.net.cn/favicon.ico" type="image/x-icon">
+<body>
+<!-- 国美公共头 start -->
+<!--# include virtual="/n/common/default/head.html"-->
+<!-- 国美公共头 end -->
+<script src="<!--# include virtual='/n/common/default/script.html'-->"></script>
+<script src="//js.${staticdomain}/channels/pcrank/js/SEO-Ranking.js"></script>
+<div class="w1200">
+    <div class="other_cont clearfix">
+        <div class="bread_crumbs">
+            <a href="${gomedomain}/${urlHead}">排行榜首页</a>
+            <i></i>
+            <a href="${gomedomain}/${urlHead}/${rank_category_info.cid}${urlEnd}">${rank_category_info.categoryName}排行榜</a>
+            <i></i>
+            <h1>${facetName}${rank_category_info.categoryName}排行榜</h1>
+        </div>
+        <div class="sr_left">
+            <div id="sr_category" class="sr_category">
+                <ul class="nav-ul">
+                    #foreach($item in $categorys)
+                        #if($velocityCount == 1)
+                        <li class="cat_item first">
+                        #else
+                        <li class="cat_item">
+                        #end
+                        <div class="cat_cont">
+                            <div class="cat_lite">
+                                <h3>
+                                    <div class="links">
+                                        <a href="javascript:" target="_blank">${item.parentName}</a>
+                                    </div>
+                                    <i class="arrow"></i>
+                                </h3>
+                                <div class="category3_lite">
+                                    #foreach($category in $item.subList)
+                                        #if($velocityCount <= 6)
+                                            <a href="${gomedomain}/${urlHead}/${category.cid}${urlEnd}" target="_blank">${category.categoryName}</a>
+                                        #end
+                                    #end
+                                </div>
+                            </div>
+                            <div class="cat_full">
+                                <ul class="cat_list">
+                                    #foreach($category in $item.subList)
+                                        #if($velocityCount > 6)
+                                            <li><a href="${gomedomain}/${urlHead}/${category.cid}${urlEnd}" target="_blank">${category.categoryName}</a></li>
+                                        #end
+                                    #end
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    #end
+                </ul>
+            </div>
+            <div class="left_link">
+                <a href="${gomedomain}/${urlHead}/new-${rank_category_info.cid}${urlEnd}" target="_blank">${rank_category_info.categoryName}新品排行</a>
+                <i></i>
+            </div>
+            <div class="left_link">
+                <a href="${gomedomain}/${urlHead}/hot-${rank_category_info.cid}${urlEnd}" target="_blank">${rank_category_info.categoryName}爆品排行</a>
+                <i></i>
+            </div>
+            <!--# include virtual="/n/common/ads/seorankzuoxia/index.html"-->
+        </div>
+        <div class="sr_right">
+            <div class="filter_criteria">
+                <div id="filter_box" class="filter_box">
+                    <div class="sr_wbox">
+                        <div class="filter_cont">
+                            <h3>所有属性</h3>
+                            <div class="item_cont">
+                             #if($facets_brand)
+                                <div class="item">
+                                    <i class="name">品牌：</i>
+                                    <div class="list_cont">
+                                        <div class="select">
+                                            #foreach($facet in $facets_brand)
+                                                #if($velocityCount == 1)
+                                                    <div class="default">${facet.value}</div>
+                                                #end
+                                            #end
+                                            <i class="arrow"></i>
+                                        </div>
+                                        <div class="list">
+                                            <div class="list_ul">
+                                                <ul>
+                                                    #foreach($facet in $facets_brand)
+                                                        <li><b></b><a href="${gomedomain}/${urlHead}/brand-${facet.id}${urlEnd}" target="_blank">${facet.value}</a></li>
+                                                    #end
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             #end
+                             #if($facets_other)
+                                <div class="item">
+                                    <i class="name">功能特点：</i>
+                                    <div class="list_cont">
+                                        <div class="select">
+                                            #foreach($facet in $facets_other)
+                                                #if($velocityCount == 1)
+                                                    <div class="default">${facet.value}</div>
+                                                #end
+                                            #end
+                                            <i class="arrow"></i>
+                                        </div>
+                                        <div class="list list2">
+                                            <div class="list_ul">
+                                                <ul>
+                                                    #foreach($facet in $facets_other)
+                                                        <li><b></b><a href="${gomedomain}/${urlHead}/other-${facet.id}${urlEnd}" target="_blank">${facet.value}</a></li>
+                                                    #end
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             #end
+                             #if($facets_price)
+                                <div class="item">
+                                    <i class="name">价格区间：</i>
+                                    <div class="list_cont">
+                                        <div class="select">
+                                            #foreach($facet in $facets_price)
+                                                #if($velocityCount == 1)
+                                                    <div class="default">${facet.value}</div>
+                                                #end
+                                            #end
+                                            <i class="arrow"></i>
+                                        </div>
+                                        <div class="list list3">
+                                            <div class="list_ul">
+                                                <ul>
+                                                    #foreach($facet in $facets_price)
+                                                        <li><b></b><a href="${gomedomain}/${urlHead}/price-${facet.id}${urlEnd}" target="_blank">${facet.value}</a></li>
+                                                    #end
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             #end
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            #if($list_saleinfo && $list_saleinfo.size() > 0)
+                <div class="sr_floor">
+                    <div class="sf_border top_brand wide_list product_list">
+                        <div class="title"><h3>${facetName}${rank_category_info.categoryName}商品销量排行</h3></div>
+                        <div class="goods_box">
+                            <div class="goods_list">
+                                <ul>
+                                    #foreach($item in $list_saleinfo)
+                                        <li data-grade="${item.evaluateNum}">
+                                            <div class="td1">
+                                                #if($velocityCount<=3)
+                                                    <i class="num red">${velocityCount}</i>
+                                                #else
+                                                    <i class="num">${velocityCount}</i>
+                                                #end
+                                            </div>
+                                            <div class="td2">
+                                                <a class="img" href="${item.purl}" target="_blank">
+                                                    <img src="${item.iurl}">
+                                                </a>
+                                            </div>
+                                            <div class="td3">
+                                                <div class="name">
+                                                    <a class="name_link" href="${item.purl}" target="_blank">${item.pn}</a>
+                                                </div>
+                                            </div>
+                                            <div class="td4">
+                                                <div class="inf">
+                                                    #if(!${item.price})
+                                                        <div class="price">暂无报价</div>
+                                                    #else
+                                                        <div class="price">&#165;<span>$number.format('.00',${item.price})</span></div>
+                                                    #end
+                                                    <div class="star"><b></b></div>
+                                                    <div class="comment">评论：<a href="${item.purl}" target="_blank"><span>${item.evaluateCount}</span>条</a></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    #end
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            #else
+                <div class="sr_floor_none">
+                    <p>非常抱歉，此页面无<b>${rank_category_info.categoryName}排行榜</b>相关商品，更多内容请访问：<a href="${gomedomain}/${urlHead}">排行榜首页</a></p>
+                </div>
+            #end
+            <div class="sr_floor">
+                <div class="hot_links">
+                    <div class="title">热门链接</div>
+                    <div class="links_cont">
+                        <ul>
+                            #foreach($item in $list_hot_links)
+                                <li><a href="${item.linkUrl}" target="_blank">${item.linkName}</a></li>
+                            #end
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 国美公共页脚 start -->
+    <!--# include virtual="/n/common/default/foot.html"-->
+    <!-- 国美公共页脚 end -->
+    <script type="text/javascript" src="//js.gomein.net.cn/js/gz/adobe/s_code-gz.js"></script>
+    <script type="text/javascript">
+        s.pageName="排行榜:${rank_category_info.categoryName}${facetName}";
+        s.channel="排行榜";
+        s.prop1="排行榜:${rank_category_info.categoryName}${facetName}";
+        s.prop2="排行榜:${rank_category_info.categoryName}${facetName}";
+        s.prop3="排行榜:${rank_category_info.categoryName}${facetName}";
+        s.prop4="排行榜";
+        var s_code=s.t();
+        if(s_code)document.write(s_code);
+    </script>
+##    <script>
+##        function(){
+##            var bp = document.createElement('script');
+##            var curProtocol = window.location.protocol.split(':')[0];
+##            if (curProtocol === 'https') {
+##                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+##            }
+##            else {
+##                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+##            }
+##            var s = document.getElementsByTagName("script")[0];
+##            s.parentNode.insertBefore(bp, s);
+##        })();
+##    </script>
+</body>
+</html>

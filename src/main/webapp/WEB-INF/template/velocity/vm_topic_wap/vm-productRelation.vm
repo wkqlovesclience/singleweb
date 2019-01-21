@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	#set($gomesite = 'gome')
+    #set($t_ids = ${title_key.id} / 1000)
+	#set($domainsite = '//m.' + $gomesite + '.com.cn')
+	#set($basePRDsite = '//item.m.gome.com.cn')
+    #set($topicsite = '//m.' + $gomesite + '.com.cn/mtopic/')
+    #set($product_site = '//www.' + $gomesite + '.com.cn')
+	#set($topicpath = $title_key.paths)
+	#if($topicpath.indexOf('topic') == 0)
+	#set($topicpath = 'm' + $topicpath)
+	#end
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>${title_key.title}相关商品_${title_key.title}相关商品排行榜 -国美手机版</title>
+	<meta name="keywords" content="${title_key.title},商品,大全,排行榜" />
+	<meta name="description" content="国美手机版(m.gome.com.cn)为您提供${title_key.title}相关热门商品排行榜，为您购买${title_key.title}及相关商品提供全面参考。" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="applicable-device" content="mobile">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+	<link rel="canonical" href="${product_site}/${title_key.paths}/product.html" >
+    <!--# include virtual="/wapblock/topic_gome_css.html" -->
+</head>
+<body>
+    <nav class="nav" id="wap_address">
+        <div class="toolbar" style="display:block">
+            <span class="nav_return nav_ico nav_back" id="nav_return" data-icon="0"></span>
+            <h2 class="ellipsis">${title_key.title}</h2>
+        </div>
+    </nav>
+    <div class="g_head">
+        <a href="${domainsite}" title="首页">首页</a>
+        <span>&gt;</span>
+        <a href="${topicsite}" title="商品专题">商品专题</a>
+		<span>&gt;</span>
+        <a href="${domainsite}/${topicpath}/" title="${title_key.title}">${title_key.title}</a>
+        <span>&gt;</span>
+        <a title="${title_key.title}相关商品" class="on">${title_key.title}相关商品</a>
+    </div>
+    <section class="g_nav">
+        <div class=""><a href="${domainsite}/${topicpath}/" title="综述">综述</a></div>
+        <div class=""><a href="${domainsite}/${topicpath}/content.html" title="详情">详情</a></div>
+        <div class=""><a href="${domainsite}/${topicpath}/price.html" title="报价">报价</a></div>
+        <div class=""><a href="${domainsite}/${topicpath}/images.html" title="图片">图片</a></div>
+        <div class=""><a href="${domainsite}/${topicpath}/comments.html" title="评价">评价</a></div>
+        <div class=""><a href="${domainsite}/${topicpath}/consulting.html" title="咨询">咨询</a></div>
+        <div class="on"><a href="${domainsite}/${topicpath}/product.html" title="推荐">推荐</a></div>
+    </section>
+
+    <section class="detail_list">
+        #if(!${skuId})
+            <a class="de_c" href="${basePRDsite}/product-${title_key.goodsId}.html" title="${title_key.goodsName}">
+                #foreach ($item in $list_image)
+                    #if($velocityCount == 1)
+                        #set($imgUrl=$item.imgUrl)
+                    #end
+                #end
+                <div class="c_img"><img src="${imgUrl}_400.jpg" alt="${title_key.goodsName}"></div>
+                <div class="c_info">
+                    <div class="name">${title_key.goodsName}</div>
+                    #if(!${goodPrice} || "$!{goodPrice}"=="")
+                        <h5>暂无报价</h5>
+                    #else
+                        <h5>￥$number.format('0.00',${goodPrice})</h5>
+                    #end
+                </div>
+            </a>
+        #else
+            <a class="de_c" href="${basePRDsite}/product-${title_key.goodsId}-${skuId}.html" title="${title_key.goodsName}">
+                #foreach ($item in $list_image)
+                    #if($velocityCount == 1)
+                        #set($imgUrl=$item.imgUrl)
+                    #end
+                #end
+                <div class="c_img"><img src="${imgUrl}_400.jpg" alt="${title_key.goodsName}"></div>
+                <div class="c_info">
+                    <div class="name">${title_key.goodsName}</div>
+                    #if(!${goodPrice} || "$!{goodPrice}"=="")
+                        <h5>暂无报价</h5>
+                    #else
+                        <h5>￥$number.format('0.00',${goodPrice})</h5>
+                    #end
+                </div>
+            </a>
+
+        #end
+    </section>
+
+
+    <section class="g_Tui b_up pad_updowm">
+        <div class="tui_header">
+            <span class="bold">大家都在买</span>
+        </div>
+        <div class="tui_list">
+            #foreach($item in $productRelation)
+                <div class="tui_gd seo_box">
+                    <a href="${basePRDsite}/product-${item.id}-${item.skuId}.html" title="${item.productname}">
+                        <div class="tui_gd_img"><img alt="${item.pn}" src="${item.imgUrl}"></div>
+                        #if(!${item.price} || "$!{item.price}"=="")
+                            <h3>暂无报价</h3>
+                        #else
+                            <h3>￥<em>$number.format('0.00',${item.price})</em></h3>
+                        #end
+                        <div class="text">${item.productname}</div>
+                    </a>
+                </div>
+            #end
+        </div>
+    </section>
+    <section class="g_Tui mar_top">
+        <div class="tui_header">
+            <span class="bold">大家都在看</span>
+        </div>
+        <div class="tui_project">
+            #foreach($item in $tecentList)
+                #set($itempath = $item.url)
+                #if($itempath.indexOf('topic') == 0)
+                    #set($itempath = 'm' + $itempath)
+                #end
+                <a title="${item.name}" href="${domainsite}/$itempath/" >${item.name}</a>
+            #end
+        </div>
+    </section>
+    <section class="g_Tui mar_top">
+        <div class="tui_header">
+            <span class="bold">品牌专区</span>
+        </div>
+        <div class="tui_brand">
+            #foreach($item in $brandZoneList)
+                <a title="${item.brandname}" href="${item.bandurl}" class="c_brand seo_box">
+                    #if(${item.brandlogo})
+                        <div class="name"><img alt="${item.brandname}" src="${item.brandlogo}"/></div>
+                    #end
+                    <h5><span>${item.brandname}</span></h5>
+                </a>
+            #end
+        </div>
+    </section>
+	<footer class="common_footer">
+		<div class="foot_tips">
+            ${title_key.title}页面描述：国美在线（gome.com.cn）${title_key.title}相关商品频道为您提供关于该商品的相关商品
+        </div>
+<!--# include virtual="/wapblock/topic_gome_footer.html" -->    
+	</footer>
+<!--# include virtual="/wapblock/topic_gome_js.html" -->
+	<script type="text/javascript">
+		s.pageName=document.title; 
+		s.channel="商品专题"; 
+		s.prop1="商品专题:${title_key.title}推荐"; 
+		s.prop2="商品专题:推荐"; 
+		s.prop3="商品专题:推荐"; 
+		s.prop4="商品专题:推荐"; 
+		var s_code=s.t(); 
+		if(s_code)document.write(s_code);
+	</script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationType : 'fraction',
+            paginationFractionRender: function (swiper, currentClassName, totalClassName) {
+                return '<span class="' + currentClassName + '"></span>' +
+                        ' / ' +
+                        '<span class="' + totalClassName + '"></span>';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Built-By: caisibing
+Build-Jdk: 1.6.0_24
+Created-By: Apache Maven 3.1.1
+Archiver-Version: Plexus Archiver

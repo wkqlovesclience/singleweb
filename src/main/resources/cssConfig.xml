@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gomeJsConfig>
+	<!-- JS定义 -->
+	<cssDefine>
+		<cssInfo id="index" path="/css/n/firstPage/index" domain="css"/>
+		<cssInfo id="base" path="/css/n/firstPage/base-index-only" domain="css"/>
+		<cssInfo id="basemax" path="/css/n/base/basemax" domain="css"/>
+		<cssInfo id="hdindex" path="/css/n/firstPage/header-index-only" domain="css"/>
+		<cssInfo id="main" path="/css/n/firstPage/main-index-only" domain="css"/>
+		<cssInfo id="cBtn" path="/css/n/firstPage/common-button" domain="css"/>
+		<cssInfo id="hbc" path="/css/n/firstPage/h_b_c" domain="css"/>
+		<cssInfo id="detail" path="/css/n/detail/prddetail" domain="css"/>
+		<cssInfo id="dtcomment" path="/css/n/detail/dtcomment" domain="css"/>
+		<cssInfo id="page" path="/css/n/detail/page" domain="css"/>
+		<cssInfo id="gCity" path="/css/n/detail/gCity" domain="css"/>
+		<cssInfo id="common-header" path="/css/n/search/common-header" domain="css"/>
+		<cssInfo id="list-v3_new" path="/css/n/search/list-v3_new" domain="css"/>
+		<cssInfo id="search" path="/css/n/search/search" domain="css"/>
+		<cssInfo id="enterprise" path="/css/n/enterprise" domain="css"/>
+		<!--团购首页group begin  -->
+		<cssInfo id="gpbase" path="/css/base" domain="css"/>
+		<cssInfo id="gpnewheader" path="/css/group-new-header" domain="css"/>
+		<cssInfo id="group" path="/css/group-new-lxf" domain="css"/>
+		<cssInfo id="commbtn" path="/css/common-button" domain="css"/>
+		<cssInfo id="groupnew" path="/css/group-new-lm" domain="css"/>
+		<cssInfo id="flagship" path="/css/flagship/flagship" domain="css"/>
+		<!--团购首页end  -->
+		<!-- 促销专区页面 -->
+		<cssInfo id="fsale" path="/css/n/flashsale/flashsale" domain="css"/>
+		<!-- 品牌专区 -->
+		<cssInfo id="brand" path="/css/n/brand/brandZone" domain="css"/>
+		<!-- 商品对比页 -->
+		<cssInfo id="comPage" path="/css/n/compare/compare" domain="css"/>
+		<!-- 商品大图页 -->
+		<cssInfo id="bigimg" path="/css/n/detail/prdbigimg" domain="css"/>
+		<!-- 超级卖场-->
+		<cssInfo id="cjmc" path="/css/cjmc/cjmc" domain="css"/>
+		<!-- 家居城-->
+		<cssInfo id="jiazhuang" path="/css/jiazhuang/jiazhuang" domain="css"/>
+		<!-- 品牌街 -->
+		<cssInfo id="brandstreetPage" path="/css/pinpaijie/brandstreet" domain="css"/>		
+		<!-- 服装城 -->
+		<cssInfo id="clothingcityPage" path="/css/clothingcity/clothingcity" domain="css"/>
+		<!-- 残次品 -->
+		<cssInfo id="defectwarePage" path="/css/defectware/defectware" domain="css"/>	
+		<!-- 残次品详情页 -->
+		<cssInfo id="defectDetailModules" path="/css/n/defectdetail/defectDetail" domain="css"/>
+		<!-- supermarket 超市-->
+		<cssInfo id="supermarketCss" path="/css/n/supermarket/supermarket" domain="css"/>
+	</cssDefine>
+	<!--页面需要引入的css配置 -->
+	<cssPage>
+		<page id="hdr" cssIds="hbc,basemax"/>
+		<page id="firstPage" cssIds="hbc,index"/>
+		<page id="goodsDetailpage" cssIds="hbc,detail,gCity"/>
+		<page id="preDetailpage" cssIds="hbc,gCity"/>
+		<page id="prdAppraisalpage" cssIds="hbc,page"/>
+		<page id="searchResultPage" cssIds="hbc,common-header,list-v3_new,search"/>
+		<page id="enterpriseChannle" cssIds="hbc,enterprise"/>
+		<!-- 团购begin -->
+		<page id="gplist" cssIds="gpbase,gpnewheader,group,commbtn,groupnew"/>
+		<page id="gpdetail" cssIds="gpbase,gpnewheader"/>
+		<page id="gpcity" cssIds="gpbase,gpnewheader,group"/>	
+		<!-- 旗舰店css配置 -->	
+		<page id="flagshipindex" cssIds="hbc,flagship"/>		
+		<!-- 团购 END -->
+		<!-- 促销专区页面 -->
+		<page id="flashsale" cssIds="hbc,fsale"/>
+		<!-- 品牌专区 -->
+		<page id="brandZone" cssIds="hbc,brand"/>
+		<!-- 商品对比页 -->
+		<page id="compare" cssIds="hbc,comPage"/>
+		<!-- 商品大图页 -->
+		<page id="detailBigimg" cssIds="hbc,bigimg"/>
+		<!-- 超级卖场 -->
+		<page id="hypermarket" cssIds="hbc,cjmc"/>
+		<!-- 家居城 -->
+		<page id="furnishing" cssIds="hbc,jiazhuang"/>
+		<!-- 品牌街 -->
+		<page id="brandstreet" cssIds="hbc,brandstreetPage"/>
+		<!-- 服装城 -->
+		<page id="clothingcity" cssIds="hbc,clothingcityPage"/>
+		<!-- 残次品 -->
+		<page id="defectware" cssIds="hbc,defectwarePage,gCity"/>
+		<!-- 残次品详情 -->
+		<page id="defectDetail" cssIds="hbc,defectDetailModules,gCity"/>
+		<!-- supermarket 超市-->
+		<page id="supermarketPage" cssIds="hbc,supermarketCss"/>
+		
+	</cssPage>
+</gomeJsConfig>

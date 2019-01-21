@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+    #if($env=="live")
+        #set($staticdomain = "gomein.net.cn")
+        #set($gomedomain = "//www.gome.com.cn")
+        #set($wapgomedomain = "//m.gome.com.cn")
+    #else
+        #set($staticdomain = "gomein.net.cn")
+        #set($gomedomain = "//www.atguat.com.cn")
+        #set($wapgomedomain = "//m.atguat.com.cn")
+    #end
+    #set($urlHead = "newtop10")
+    #set($urlEnd = "")
+<head>
+    <meta charset="UTF-8">
+    <title>国美产品品牌排行榜_2017热门品牌排行榜-国美手机版</title>
+    <meta name="keywords" content="热门产品排行榜,品牌排行榜,什么牌子好,国美在线商品排行榜">
+    <meta name="description" content="国美手机版热门产品排行榜提供:电脑,冰箱,洗衣机,空调,手机,数码,珠宝,钟表等国美所有商品排行榜,品牌排行榜,各类参数排行榜,为你比较产品怎么样,哪个牌子好提供详细的参考信息。">
+    <meta name="author" content="m.gome.com.cn">
+    <meta name="applicable-device" content="mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="${gomedomain}/${urlHead}">
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="https://js.gomein.net.cn/topics/mobile/css/waprank_base.css">
+    <link rel="stylesheet" type="text/css" href="https://js.gomein.net.cn/topics/mobile/css/waprank_top.css">
+</head>
+
+<body>
+    <!--start-->
+    <!--导航模板-->
+    <nav class="nav">
+        <div class="toolbar">
+            <span class="nav_ico nav_back" data-icon='&#x0030' id="goback" data-goback="goback"></span>
+            <span class="nav_ico nav_home" data-icon='&#x0032'></span>
+            <span class="nav_ico nav_more" data-icon='&#x0031' id='nav_new_more'></span>
+            <h1 class="ellipsis">商品排行榜首页</h1>
+        </div>
+        <ul class="nav_ulist" id="nav_list" style="display:none">
+            <li>
+                <a id="nav_classify" href="javascript:;" data-icon='&#x0034'>分类</a>
+            </li>
+            <li>
+                <a id="nav_shopcar" href="javascript:;" data-icon='&#x0035'>购物车</a>
+            </li>
+            <li>
+                <a id="nav_mygome" href="javascript:;" data-icon='&#x0036'>我的国美</a>
+            </li>
+        </ul>
+    </nav>
+    <!--end-->
+    <!--start-->
+    <!--内容-->
+    <article class="content">
+        <!--所有排行榜分类-->
+        <section class="plc_module">
+            <h2 class="title">所有排行榜分类</h2>
+            <ul class="ulist">
+            	#if($list && $list.size() > 0)
+				#foreach($item in $list)
+				<li class="category">
+					<div class="type flexbox">
+                        <span class="words flex1">${item.parentName}</span>
+                        <i data-icon='&#x0030' class="arr_down"></i>
+                    </div>
+					<ul class="plc_module_list words_list">
+							#foreach($subItem in $item.subList)
+							<li><a  href="${wapgomedomain}/${urlHead}/${subItem.cid}${urlEnd}">${subItem.categoryName}</a></li>
+							#end
+					</ul>
+				</li>
+				#end
+				#end
+            </ul>
+        </section>
+        <!--所有排行榜-->
+        
+        <!--最新商品评价-->
+        <section class="plc_module">
+            <h2 class="title">最新商品评价</h2>
+            <ul class="evale_list">
+            	#foreach($item in $hot_comment)
+				<li><a  class="ellipsis"  href="${item.href}">${item.content}</a></li>
+				#end
+            </ul>
+        </section>
+        <!--热门专题-->
+        <section class="plc_module">
+            <h2 class="title">热门专题</h2>
+            <ul class="plc_module_list hot_list">
+            	#foreach($item in $hot_title)
+					<li><a href="${gomedomain}/${item.paths}/">${item.title}</a></li>
+				#end
+            </ul>
+        </section>
+        <!--热门排行榜-->
+        <section class="plc_module last_module">
+        	#if($hot_rank && $hot_rank.size() > 0)
+            <ul class="evale_list">
+				#foreach($subItem in $hot_rank)
+				<li><a  class="ellipsis" href="${wapgomedomain}/${urlHead}/${subItem.categoryId}${urlEnd}">${subItem.categoryName}</a></li>
+				#end
+            </ul>
+			#end
+        </section>
+        <!--面包线-->
+        <section class="plc_line_cont">
+            <div class="guide flexbox">
+                <div class="gome_bg"><img src="//js.gomein.net.cn/topics/mobile/images/waprank_gome_bg.png" alt=""></div>
+                <div class="stage none">
+                    <a href="//m.gome.com.cn">首页</a>
+                </div>
+                <div class="level iconRotate180 icon" data-icon="&#x0030"></div>
+                <div class="stage">商品排行榜</div>
+            </div>
+        </section>
+        <!-- 返回顶部 -->
+        <span id="gotop" data-gotop="true" data-gotop-type="gotop2" data-icon="&#x2020">顶部</span>
+    </article>
+    <!--end-->
+
+    <!--start-->
+    <!--嵌入底部模板-->
+    <footer class='plc_footer' id='plc_footer'>
+        <div class="usr_bar">
+            <a href="://m.gome.com.cn/login.html" target="_blank" rel="nofollow"><span>登录</span></a>
+            <a href="//m.gome.com.cn/registered.html" target="_blank" rel="nofollow"><span>注册</span></a>
+            <a href="m.gome.com.cn/more.html"><span class="sp">更多</span></a>
+            <a href="//m.gome.com.cn/login.html?return_url=ZmVlZF9iYWNrLmh0bWw=" target="_blank" rel="nofollow"><span>反馈</span></a>
+        </div>
+        <div class="version">
+            <span class="touch">触屏版</span>
+            <a href="//www.gome.com.cn/?jump=wtp" target="_blank" rel="nofollow">
+                <span>电脑版</span>
+            </a>
+            <span id="appdownload">客户端</span>
+        </div>
+        <div class="gome_info">
+            <p>copyright &copy; 2000-2015 gome.com.cn</p>
+            <p>客服热线：4008-708-708</p>
+        </div>
+    </footer>
+    <!--end-->
+    <script type="text/javascript" src='https://js.gomein.net.cn/topics/mobile/js/waprank_zepto.min.js'></script>
+    <script type="text/javascript" src="https://js.gomein.net.cn/topics/mobile/js/waprank_zepto.goback.js"></script>
+    <script type="text/javascript" src="https://js.gomein.net.cn/topics/mobile/js/waprank_zepto.gotop.js"></script>
+    <script type="text/javascript" src='https://js.gomein.net.cn/topics/mobile/js/waprank_nav.js'></script>
+    <script type="text/javascript" src="https://js.gomein.net.cn/topics/mobile/js/waprank_top.js"></script>
+    <script type="text/javascript" src="https://js.gomein.net.cn/topics/mobile/js/waprank_tab.js"></script>
+    <script>
+        $("#nav_back").goback();
+        keywords('.category>.type.flexbox');
+    </script>
+    <script type="text/javascript" src="https://js.gomein.net.cn/plus/js/public/omniture/s_code.js"></script>
+   <script type="text/javascript" src="https://js.gomein.net.cn/sitemonitor/wap.js"></script>
+    <script type="text/javascript" language="javascript">
+		s.pageName="商品排行榜:首页";
+		s.channel="排行榜";
+		s.prop1="商品排行榜:首页";
+		s.prop2="商品排行榜:首页";
+		s.prop3="商品排行榜:首页";
+		s.prop4="排行榜";
+		var s_code=s.t();
+		if(s_code)document.write(s_code);
+    </script>
+<!--   
+ <script>
+      (function(){
+       var bp = document.createElement('script');
+       bp.src = '//push.zhanzhang.baidu.com/push.js';
+       var s = document.getElementsByTagName("script")[0];
+       s.parentNode.insertBefore(bp, s);
+       })();
+    </script>
+-->   
+</body>
+
+</html>

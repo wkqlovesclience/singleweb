@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.alibaba:dubbo:2.5.5.idc-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://D:/repository/com/alibaba/dubbo/2.5.5.idc-SNAPSHOT/dubbo-2.5.5.idc-20180312.090026-17.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/repository/com/alibaba/dubbo/2.5.5.idc-SNAPSHOT/dubbo-2.5.5.idc-20180312.090026-17-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/repository/com/alibaba/dubbo/2.5.5.idc-SNAPSHOT/dubbo-2.5.5.idc-20180312.090026-17-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

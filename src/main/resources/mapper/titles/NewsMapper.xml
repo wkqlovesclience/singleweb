@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gome.stage.mapper.NewsMapper" >
+  <resultMap type="com.gome.stage.entity.News" id="RMNews">
+    <result property="id" column="ID"/>
+    <result property="titleId" column="TITLE_ID"/>
+    <result property="paths" column="PATHS"/>
+    <result property="topic" column="TOPIC"/>
+    <result property="createTime" column="CREATE_TIME"/>
+    <result property="contents" column="CONTENTS"/>
+    <result property="picUrl" column="PICURL"/>
+  </resultMap>
+
+
+  <select id="getNewsCountByTid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT count(*) FROM t_news WHERE TITLE_ID = #{title_id}
+  </select>
+
+  <!-- 获得文章列表  -->
+  <select id="findNewsList" resultMap="RMNews" resultType="com.gome.stage.entity.News">
+    SELECT t1.ID,t1.TITLE_ID,t2.PATHS,t1.TOPIC,t1.CREATE_TIME,t1.CONTENTS,t1.PICURL FROM t_news t1 LEFT JOIN t_titles t2 ON t1.TITLE_ID = t2.ID
+    WHERE t1.STATES = 'Y'
+    <if test="site!=null">
+      AND t1.SITE = #{site}
+    </if>
+    <if test="titleId!=null">
+      AND t1.TITLE_ID = #{titleId}
+    </if>
+    ORDER BY t1.CREATE_TIME DESC,t1.UPDATE_TIME DESC
+  </select>
+
+  <!-- 获得文章列表  -->
+  <select id="findRecentNewsList" resultMap="RMNews" resultType="com.gome.stage.entity.News">
+    SELECT t1.ID,t1.TITLE_ID,t2.PATHS,t1.TOPIC,t1.CREATE_TIME,t1.CONTENTS,t1.PICURL FROM t_news t1 LEFT JOIN t_titles t2 ON t1.TITLE_ID = t2.ID
+    WHERE t1.STATES = 'Y'
+    <!--<if test="site!=null">
+      AND t1.SITE = #{site}
+    </if>-->
+    ORDER BY t1.CREATE_TIME DESC,t1.UPDATE_TIME DESC
+    LIMIT 0,10
+  </select>
+
+
+</mapper>

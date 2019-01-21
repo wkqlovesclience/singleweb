@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	#set($gomesite = 'gome')
+	#set($t_ids = ${title_key.id} / 1000)
+    #set($domainsite = '//m.' + $gomesite + '.com.cn')
+	#set($basePRDsite = '//item.m.gome.com.cn')
+    #set($topicsite = '//m.' + $gomesite + '.com.cn/mtopic/')
+    #set($product_site = '//www.' + $gomesite + '.com.cn')
+	#set($topicpath = $title_key.paths)
+	#if($topicpath.indexOf('topic') == 0)
+	#set($topicpath = 'm' + $topicpath)
+	#end
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>【${title_key.title}】报价_介绍_图片_评论_咨询-${title_key.title}产品大全-国美手机版</title>
+    <meta name="keywords" content="${title_key.keywords}" />
+	<meta name="description" content="国美手机版(m.gome.com.cn)为您提供${title_key.title}相关产品参数、价格、介绍、选购、答疑、问答信息，为您购买${title_key.title}提供全面参考。" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="applicable-device" content="mobile">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+	<link rel="canonical" href="${product_site}/${title_key.paths}/" >
+    <!--# include virtual="/wapblock/topic_gome_css.html" -->
+ <style type="text/css">
+.tip{ background: #fff;font-size: 0.75rem; padding-left: 0.4rem; padding-top: 0.4rem; padding-bottom:0.4rem;}
+.tip a{ color: #e3101e;}
+</style>
+
+</head>
+<body>
+    <nav class="nav" id="wap_address">
+        <div class="toolbar" style="display:block">
+            <span class="nav_return nav_ico nav_back" id="nav_return" data-icon="0"></span>
+            <h2 class="ellipsis">${title_key.title}</h2>
+        </div>
+    </nav>
+    <div class="g_head">
+        <a title="首页" href="${domainsite}">首页</a>
+        <span>&gt;</span>
+        <a title="商品专题" href="${topicsite}">商品专题</a>
+		<span>&gt;</span>
+        <a title="${title_key.title}" class="on">${title_key.title}</a>
+    </div>
+    <section class="g_nav">
+        <div class="on"><a href="${domainsite}/$topicpath/" title="综述">综述</a></div>
+        <div class=""><a href="${domainsite}/$topicpath/content.html" title="详情">详情</a></div>
+        <div class=""><a href="${domainsite}/$topicpath/price.html" title="报价">报价</a></div>
+        <div class=""><a href="${domainsite}/$topicpath/images.html" title="图片">图片</a></div>
+        <div class=""><a href="${domainsite}/$topicpath/comments.html" title="评价">评价</a></div>
+        <div class=""><a href="${domainsite}/$topicpath/consulting.html" title="咨询">咨询</a></div>
+        <div class=""><a href="${domainsite}/$topicpath/product.html" title="推荐">推荐</a></div>
+    </section>
+    <section class="g_showImg">
+        <div class="swiper-container">
+            <ul class="swiper-wrapper">
+                #foreach ($item in $zhuanTiGoodsImages)
+                <li class="swiper-slide" data-swiper-slide-index="$velocityCount">
+					<img src="${item.imgUrl}_400.jpg" alt="${item.productname}">
+                </li>
+				#end
+            </ul>
+            <div class="swiper-pagination pag-style"></div>
+        </div>
+        <a href="${domainsite}/$topicpath/images.html" class="more-img" title="查看更多商品图片">查看更多商品图片</a>
+    </section>
+     <section class="g_goods">
+        <div class="goods_pro">
+            #if(!${skuId})
+                <a title="${title_key.goodsName}" href="${basePRDsite}/product-${title_key.goodsId}.html" class="blue">
+            #else
+                <a title="${title_key.goodsName}" href="${basePRDsite}/product-${title_key.goodsId}-${skuId}.html" class="blue">
+            #end
+
+            <h1 class="g_title">${title_key.goodsName}</h1>
+			</a>
+
+            <div class="tip">
+                #foreach($item in $tag_list)
+                    <a href="//m.gome.com.cn/mtopic/${item.id}.html"> ${item.names}</a>
+                #end
+            </div>
+
+			#if(${goodPrice}&&${goodPrice}!="")
+				<div class="g_price">￥<em>$number.format('0.00',${goodPrice})</em></div>
+			#else
+				<div class="g_price"><em>暂无报价</em></div>
+			#end
+        </div>
+        <div class="evaluate">
+			#if($productComments && $productComments.size() > 0)
+                #foreach($item in $productComments)
+                    <div class="eval_h">
+                        <span>评价
+                            #if($comment_base)
+                                (${comment_base.totalNum})
+                            #end
+                        </span>
+                        <span><a rel="nofollow" href="${domainsite}/$topicpath/comments.html" title="好评度">好评度:<em>
+                        #if($comment_base)
+                            ${comment_base.haoping}%
+                        #else
+                            100%
+                        #end
+                        </em></a><i class="g_icon"></i></span>
+                    </div>
+                <div class="eval_b">
+                    <div class="user_con">
+                        <i class="user_img">
+                        #if($item.accountimgurl)
+                            <img src="${item.accountimgurl}" alt="${item.accountid}" />
+                        #end
+                        </i>
+                        <span class="user_name">$!{item.accountid}</span>
+                        <span class="user_score">
+                            <i class="on"></i>
+                            <i class="on"></i>
+                            <i class="on"></i>
+                            <i class="on"></i>
+                            <i class="on"></i>
+                        </span>
+                    </div>
+                    <div class="user_info">${item.shiyongxinde}</div>
+                </div>
+                <div class="eval_f">
+                    <div class="e_btn"><i class="a_eval"></i><a rel="nofollow" href="${domainsite}/$topicpath/comments.html" title="全部评价">全部评价</a></div>
+                    <div class="e_btn"><i class="a_eval"></i><a rel="nofollow" href="${domainsite}/$topicpath/consulting.html" title="购买咨询">购买咨询</a></div>
+                </div>
+                #end
+			#else
+			<div class="eval_h">
+				<span>评价（<em>0</em>）</span>
+				<span><a rel="nofollow" href="${domainsite}/$topicpath/comments.html" title="好评度">好评度:<em>100%</em><i class="g_icon"></i></a></span>
+			</div>
+			<div class="eval_b">
+				<div class="user_info">还没有评价过此商品哦~</div>
+			</div>
+			<div class="eval_f">
+				<div class="e_btn"><i class="a_eval"></i><a rel="nofollow" href="${domainsite}/$topicpath/comments.html" title="全部评价">全部评价</a></div>
+				<div class="e_btn"><i class="z_eval"></i><a rel="nofollow" href="${domainsite}/$topicpath/consulting.html" title="购买咨询">购买咨询</a></div>
+			</div>
+			#end
+		</div>
+    </section>
+    <a class="goods-detils" href="${domainsite}/$topicpath/content.html" title="查看商品详情"><span>查看商品详情</span><i class="g_icon"></i></a>
+    #*<section class="g_Tui">
+        <div class="tui_header">
+            <span class="bold">相关专题推荐</span>
+        </div>
+        <div class="tui_project">
+			#foreach($item in $list_xgzttj)
+			#set($itempath = $item.path)
+			#if($itempath.indexOf('topic') == 0)
+			#set($itempath = 'm' + $itempath)
+			#end
+			<a title="${item.keyname}" href="$domainsite/$itempath/">${item.keyname}</a>
+			#end
+        </div>
+    </section>*#
+    #if($newsReleated && $newsReleated.size() > 0)
+    <section class="g_Tui mar_top">
+        <div class="tui_header">
+			<span class="bold">相关知识推荐</span>
+            <a href="${domainsite}/$topicpath/know.html" class="more" title="查看更多">查看更多<i class="g_icon"></i></a>
+        </div>
+		#foreach($item in $newsReleated)
+            <div class="tui_infoImg">
+                    <div class="info-title">
+                        <a class="tit"  title="${item.topic}" href="${domainsite}/$topicpath/know/${item.id}.html" >${item.topic}</a>
+                        <h3>
+
+#foreach($aitem in ${item.labelList})
+<a href="${domainsite}/newstag/tag${aitem.id}/" target="_blank">${aitem.names}</a>
+#end
+</h3>
+<a href="javascript:" class="pre">${item.remark}</a>
+                        <h5><span>$date.format('yyyy-MM-dd HH:mm:ss',${item.createTime})</span></h5>
+                    </div>
+                    <div class="info-img">
+						#if(${item.imgurl})
+                        <img src="${item.imgurl}" alt="${item.topic}" />
+						#end
+                    </div>
+            </div>
+        </a>
+		#end
+    </section>
+	#end
+	#if($product_state && ${product_state.state}!=4)
+    <div class="saleEnd_con open">
+        <div class="goods_end">
+            <span class="red">商品已下架</span>
+            <span class="gray">查看相似有货商品<i class="icon_bot"></i></span>
+        </div>
+		#if($everyOneSerach && $everyOneSerach.size() > 0)
+        <section class="g_Tui the_end pad_up">
+            <div class="tui_list">
+                #foreach($item in $everyOneSerach)
+				#if($velocityCount<4)
+				<div class="tui_gd seo_box">
+	                <a href="${item.detailHref}" title="${item.productname}">
+	                    <div class="tui_gd_img"><img alt="${item.productname}" src="${item.imgUrl}"></div>
+	                    #if(!${item.price} || "$!{item.price}"=="")
+	                    <h3>暂无报价</h3>
+						#else
+	                    <h3>￥<em>$number.format('0.00',${item.price})</em></h3>
+						#end
+	                    <div class="text">${item.productname}</div>
+	                </a>
+	            </div>
+				#end
+				#end
+			</div>
+        </section>
+		#end
+    </div>
+	#else
+    <section class="g_Tui mar_top">
+        <div class="tui_header">
+            <span class="bold">大家都在买</span>
+        </div>
+        <div class="tui_list">
+            #foreach($item in $everyOneSerach)
+                <div class="tui_gd seo_box">
+                    <a href="${item.purl}" title="${item.pn}">
+                        <div class="tui_gd_img"><img alt="${item.pn}" src="${item.iurl}"></div>
+                        #if(!${item.price} || "$!{item.price}"=="")
+                            <h3>暂无报价</h3>
+                        #else
+                            <h3>￥<em>$number.format('0.00',${item.price})</em></h3>
+                        #end
+                        <div class="text">${item.pn}</div>
+                    </a>
+                </div>
+            #end
+        </div>
+    </section>
+	#end
+    <section class="g_Tui mar_top">
+        <div class="tui_header">
+            <span class="bold">大家都在看</span>
+        </div>
+        <div class="tui_project">
+            #foreach($item in $tecentList)
+            #set($itempath = $item.url)
+			#if($itempath.indexOf('topic') == 0)
+			#set($itempath = 'm' + $itempath)
+			#end
+           	<a title="${item.name}" href="${domainsite}/$itempath/" >${item.name}</a>
+			#end
+        </div>
+    </section>
+    <section class="g_Tui mar_top">
+        <div class="tui_header">
+            <span class="bold">品牌专区</span>
+        </div>
+        <div class="tui_brand">
+            #foreach($item in $brandZoneList)
+			 <a title="${item.brandname}" href="${item.bandurl}" class="c_brand seo_box">
+		 	#if(${item.brandlogo})
+			<div class="name"><img alt="${item.brandname}" src="${item.brandlogo}"/></div>
+			#end
+                <h5><span>${item.brandname}</span></h5>
+            </a>
+			#end
+        </div>
+    </section>
+	<footer class="common_footer">
+		<div class="foot_tips">
+            ${title_key.title}页面描述：国美在线（gome.com.cn）${title_key.title}频道为您提供关于该商品的价格、图片、评论以及与${title_key.title}相关的商品内容，让您对${title_key.title}快速的了解，若要购买${title_key.title}，可去国美相关详情页面购买
+		</div>
+<!--# include virtual="/wapblock/topic_gome_footer.html" -->    
+	</footer>
+<!--# include virtual="/wapblock/topic_gome_js.html" -->
+	<script type="text/javascript">
+		s.pageName=document.title; 
+		s.channel="商品专题"; 
+		s.prop1="商品专题:${title_key.title}综述"; 
+		s.prop2="商品专题:综述"; 
+		s.prop3="商品专题:综述"; 
+		s.prop4="商品专题:综述"; 
+		var s_code=s.t(); 
+		if(s_code)document.write(s_code);
+	</script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationType : 'fraction',
+            paginationFractionRender: function (swiper, currentClassName, totalClassName) {
+                return '<span class="' + currentClassName + '"></span>' +
+                        ' / ' +
+                        '<span class="' + totalClassName + '"></span>';
+            }
+        });
+        var Salend=function(){
+            this.dheight=$(".saleEnd_con").height();
+            this.eEvent=function(){
+                var self=this;
+                $(".goods_end").on("click",".gray",function(){
+                    var h=$(".goods_end").height();
+                    var d=$(".saleEnd_con");
+                    if(d.hasClass("open")){
+                        d.animate({height:h+"px"},100,'linear');
+                        d.removeClass("open");
+                    }else{
+                        d.animate({height:self.dheight+"px"},100,'linear');
+                        d.addClass("open");
+                    }
+                });
+            }
+        };
+        new Salend().eEvent();
+    </script>
+</body>
+</html>

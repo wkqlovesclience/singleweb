@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.gome.stage.mapper.LabelMapper">
+  <resultMap id="RMLabel" type="com.gome.stage.entity.Label">
+    <result property="id" column="ID"/>
+    <result property="type" column="TYPES"/>
+    <result property="names" column="NAMES"/>
+    <result property="url" column="URL"/>
+    <result property="createTime" column="CREATE_TIME"/>
+    <result property="updateTime" column="UPDATE_TIME"/>
+    <result property="creator" column="CREATOR"/>
+    <result property="states" column="STATES"/>
+    <result property="everySearch" column="EVERY_SEARCH"/>
+  </resultMap>
+
+  <resultMap type="com.gome.stage.entity.LabelIndex" id="RMLabelIndex">
+    <result property="id" column="ID"/>
+    <result property="labelId" column="LABELID"/>
+    <result property="title" column="NAMES"/>
+    <result property="cindex" column="CINDEX"/>
+    <result property="priority" column="PRIORITY"/>
+    <result property="status" column="STATUS"/>
+  </resultMap>
+
+
+
+  <sql id="LabelColumns">
+        ID ,TYPES ,NAMES ,URL ,CREATE_TIME ,UPDATE_TIME ,CREATOR ,STATES ,EVERY_SEARCH
+	</sql>
+
+  <select id="getLabelnameById" resultMap="RMLabel">
+    SELECT <include refid="LabelColumns"/>
+    <![CDATA[
+	        FROM t_label_art
+	        WHERE
+		        ID = #{id}
+	    ]]>
+  </select>
+
+  <select id="getNewsRelatedLabel"  parameterType="java.util.Map" resultType="com.gome.stage.entity.NewsRelatedLabel">
+				SELECT
+					r.id,
+					r.article_id articleId,
+					r.keywords labelId,
+					a.url labelsUrl,
+					t.topic,
+					t.keywords,
+					t.remark,
+					t.contents,
+					t.create_time public_time,
+					t.site,
+					t.picurl,
+					(
+					SELECT
+						GROUP_CONCAT( t_label_art.`NAMES` )
+					FROM
+						t_label_art_rel
+						LEFT JOIN t_label_art ON t_label_art_rel.KEYWORDS = t_label_art.ID
+					WHERE
+						article_id = t.id
+					) labelNames,
+					(
+					SELECT
+						GROUP_CONCAT( t_label_art.id )
+					FROM
+						t_label_art_rel
+						LEFT JOIN t_label_art ON t_label_art_rel.KEYWORDS = t_label_art.ID
+					WHERE
+						article_id = t.id
+					) labels
+				FROM
+					t_label_art_rel r
+					LEFT JOIN t_news t ON r.article_id = t.id
+					LEFT JOIN t_label_art a ON r.keywords = a.id
+				WHERE
+					r.keywords = #{id}
+				GROUP BY
+					r.article_id
+
+
+	</select>
+
+
+
+  <select id="getNewsRelatedLabelByNewsID"  parameterType="java.lang.Integer" resultMap="RMLabel">
+	SELECT
+			a.*
+		FROM
+			t_label_art a
+		LEFT JOIN  t_label_art_rel r ON r.keywords = a.id
+		WHERE
+	    r.article_id = #{newsId}
+  </select>
+
+
+  <select id="getLabelRelEverySearch" resultMap="RMLabel" resultType="com.gome.stage.entity.Label">
+    SELECT
+    <include refid="LabelColumns"/>
+    FROM
+    t_label_art
+    WHERE
+    EVERY_SEARCH = "Y"
+    AND STATES = "Y"
+  </select>
+
+
+  <update id="updateLabelStates">
+    <![CDATA[
+        UPDATE t_label_art SET
+	        STATES = 'Y'
+        WHERE
+	        ID = #{id}
+    ]]>
+    </update>
+
+
+  <select id="getLabelIndex" resultMap="RMLabelIndex" resultType="com.gome.stage.entity.LabelIndex">
+    <![CDATA[
+		SELECT DISTINCT t1.ID,t1.CINDEX,t1.LABELID,t1.PINYIN,t1.PRIORITY,t1.STATUS,t2.NAMES
+		FROM t_label_index t1 JOIN t_label_art t2 ON t1.LABELID = t2.ID
+		]]>
+    WHERE t1.STATUS = 1
+    <if test="cindex != null">
+      AND t1.CINDEX = #{cindex}
+    </if>
+
+    <if test="cstart != null">
+       <![CDATA[ AND t1.CINDEX >= #{cstart} ]]>
+    </if>
+
+    <if test="cend!=null">
+      <![CDATA[ AND  t1.CINDEX <= #{cend} ]]>
+    </if>
+	ORDER BY t1.CINDEX ASC,t1.PRIORITY DESC
+
+  </select>
+
+
+  <select id="getLabelCindexCount" parameterType="java.lang.String" resultType="java.util.HashMap">
+		<![CDATA[
+		SELECT t.cindex,COUNT(t.cindex) counts
+		FROM ( SELECT IF(cindex >= '0' AND cindex <= '9' ,'0',cindex) cindex FROM t_label_index) t
+		GROUP BY t.cindex ORDER BY t.cindex ASC
+		]]>
+	</select>
+
+  <select id="getLabelIndexWithPage" resultMap="RMLabelIndex" resultType="com.gome.stage.entity.LabelIndex">
+    <![CDATA[
+		SELECT DISTINCT t1.ID,t1.CINDEX,t1.LABELID,t1.PINYIN,t1.PRIORITY,t1.STATUS,t2.NAMES
+		FROM t_label_index t1 JOIN t_label_art t2 ON t1.LABELID = t2.ID
+		]]>
+    WHERE t1.STATUS = 1
+    <if test="cindex!=null">
+      AND t1.CINDEX = #{cindex}
+    </if>
+    <if test="cstart!=null">
+      <![CDATA[  AND t1.CINDEX >= #{cstart}]]>
+    </if>
+
+    <if test="cend!=null">
+       <![CDATA[ AND t1.CINDEX <= #{cend}]]>
+    </if>
+		ORDER BY t1.CINDEX ASC,t1.PRIORITY DESC
+		limit #{begin},#{pagesize}
+  </select>
+
+</mapper>
+
+

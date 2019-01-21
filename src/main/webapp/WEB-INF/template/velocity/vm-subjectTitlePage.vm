@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
+	#if(${pageNumber} == 1)
+		#set($pageNumInfo = '')
+	#else
+	    #set($pageNumInfo = "-第${pageNumber}页")
+	#end
+	<title>热门产品列表-${cindex}${pageNumInfo} -国美商城</title>
+	<meta name="keywords" content="国美热门专题,热门商品报价,最新产品报价，国美商城，国美在线" />
+	<meta name="description" content="国美商城(Gome.com.cn)热门产品专题列表，为您提供最新热门商品报价、介绍、图片、评论、咨询信息。" />
+<link rel="alternate" media="only screen and(max-width: 640px)" href="//m.gome.com.cn/mtopic/${cindex}.html">
+<meta name="mobile-agent" ontent="format=html5;url=//m.gome.com.cn/mtopic/${cindex}.html">
+<meta name="applicable-device" content="pc">
+	<!--# include virtual="/mblock/topic_gome_css_new.html" --> <!-- 引入CSS文件 -->
+	  <!--# include virtual="/n/common/global/global.html"-->
+       <link rel="stylesheet" href="<!--# include virtual='/n/common/default/style.html'-->">
+        <script src="<!--# include virtual='/n/common/default/script.html'-->"></script>
+	<!--# include virtual="/mblock/topic_gome_js_new.html" --> <!-- 引入JS文件 -->
+<script src="//js.gomein.net.cn/??/eccms/js/topics_js/100/4094485984.js,/f2ejs/g/jsCssImport.min.js" type="text/javascript"></script>
+	#set($domainsite = '//www.gome.com.cn')
+    #set($topicsite = '//www.gome.com.cn/')
+       	#set($newtopicsite = '//www.gome.com.cn/')
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fcb189c645a553beedb0750841344517";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <style type="text/css">
+        a {
+    color: #333;
+    cursor: pointer;
+    outline: 0 none;
+    text-decoration: none;
+}
+a:hover {
+    color: #c00;
+    text-decoration: underline;
+}
+.link {
+    color: #06c;
+}
+a.link:hover {
+    color: #06c;
+    text-decoration: underline;
+}
+   </style>
+</head>
+<body class="w990">
+	<!-- 国美公共头 start -->
+	  <!--# include virtual="/n/common/default/head.html"-->
+	<!-- 国美公共头 end -->
+<div class="main clearfix">
+        <!-- crums -->
+        <div class="crums"><a href="${domainsite}/">首页</a><em>></em><a href="${topicsite}topic">热门专题</a><em>></em>热门专题列表</div>
+        <div class="left-main">
+            <div class="p-title">
+                <h1 class="name">热门专题列表</h1>
+            </div>
+            <!--  商品详细信息 -->
+            <div class="p-main">
+                <!-- .p-bd begin -->
+                <div class="p-bd">
+                    <div class="shop-more">
+                        <!-- 索引列表 start -->
+						<p> <a href="${topicsite}topic/" class="all-list">全部</a>
+							#foreach( $ckey in $cindex_key)
+							#if ($ckey == $cindex)
+							#set($indexClass = 'all-list all-bg')
+							#else
+							#set($indexClass = '')
+							#end
+							#if ( $ckey=='0' )
+							<a class="${indexClass}" href="${topicsite}topic/${ckey}.html">0-9</a>
+							#else 
+							<a class="${indexClass}" href="${topicsite}topic/${ckey}.html">${ckey}</a>
+							#end
+							#end
+						</p>
+						<!-- 索引列表 end -->
+						<!-- 专题列表 start -->
+						<ul id="js-more-list">
+							#foreach($item in $cindexList)
+							#set($ccount = ($velocityCount % 12))
+							#if ( $ccount == 1 ) 
+								#set($cccount = ($velocityCount % 24))
+								#if ($cccount == 13)
+								#set($liClass='li-bg')
+								#else
+								#set($liClass='')
+								#end
+							<li class="$liClass">
+							#end
+							<span><a title="${item.titleName}" href="${topicsite}${item.titlePath}/" target="_blank">${item.titleName}</a></span>
+							#if (($velocityCount > 12 && $ccount==0) || ( $velocityCount == $list.size()))     
+							</li>
+							#end
+							#end
+						</ul>
+						<!-- 专题列表 end -->
+						<!-- 页码 stat -->
+						#if ($withPages=='yes' && ($totalCount > 1))
+                        <div class="pagesData">
+							#if ($preNo > 1)
+								<a class="pr page-pre" href="${topicsite}topic/${cindex}-${preNo}.html"><i></i>上一页</a>
+							#elseif ($preNo == 1)
+								<a class="pr page-pre" href="${topicsite}topic/${cindex}.html">上一页<i></i></a>
+							#else
+								<a class="pr page-pre nopre" href="${topicsite}topic/${cindex}.html">上一页<i></i></a>
+							#end
+							#foreach( $page in $pageList )
+								#if ($page == $pageNumber)
+									#set($curentNoClass='now')
+								#else
+									#set($curentNoClass='')
+								#end
+								#if ($page == 1)
+								<a class="$curentNoClass" href="${topicsite}topic/${cindex}.html">${page}</a>
+								#else
+								<a class="$curentNoClass" href="${topicsite}topic/${cindex}-${page}.html">${page}</a>
+								#end
+							#end
+							#if ($nextNo > $totalCount)
+								#set($nextNoClass='pr nopre')
+								#set($nextNo = $totalCount)
+							#else
+								#set($nextNoClass='pr')
+							#end
+							<a class="$nextNoClass" href="${topicsite}topic/${cindex}-${nextNo}.html">下一页<i></i></a>
+							<span>共$totalCount页</span>
+							<span>到第<input id="gotoPageNum" type="text" value="">页</span>
+							<a class="go"  onclick="gotoPage()">确定</a>
+							<script type="text/javascript">
+								function gotoPage(){
+									var totalCount = $totalCount;
+									var gotoPage = document.getElementById("gotoPageNum").value;
+									if(isNaN(gotoPage)){
+										alert("请输入数字！");
+										document.getElementById("gotoPageNum").value="";
+										return;
+									}
+									if(gotoPage > totalCount || gotoPage < 1){
+										alert("输入数字有问题！");
+										document.getElementById("gotoPageNum").value="";
+										return;
+									}
+									if( gotoPage == 1){
+										window.location.href="${topicsite}topic/${cindex}.html";
+									}else if( gotoPage > 1 && gotoPage <= totalCount){
+										window.location.href="${topicsite}topic/${cindex}-"+gotoPage+".html";
+									}
+								}
+							</script>
+                        </div> 
+						#end
+						<!-- 页码 stat -->						
+                    </div>
+                </div>
+                <!-- .p-bd end -->
+            </div>
+            <!--  商品详细信息结束 -->
+            
+        </div>
+        <div class="right-aside">
+            <!-- .jrtg begin -->
+            <div class="column">
+                <div class="c-hd"><h2 class="name"></h2></div>
+                    <div class="tuan">
+		<!-- 广告位 -->
+		<a href="javascript:" target="_blank" class="advert">
+		   <!--# include virtual="/n/common/ads/seoyoushang/index.html"-->
+		</a>                 
+                </div>
+            </div>
+            <!-- .jrtg end -->
+            
+            <!-- .zxspzs begin -->
+            <div class="column">
+                <div class="c-hd"><a target="_blank" href="${topicsite}know.html" class="more">更多<em>></em></a><h2 class="name">最新商品知识</h2></div>
+                <!-- 最新商品知识 块引入  start -->
+				<!--# include virtual="/sblock/0/34/b_index_lastst_news.html" -->
+				<!-- 最新商品知识 块引入  end -->
+
+                <div class="c-bd">
+                    <ul class="zxspzs">
+						#foreach($item in $list)
+                            <li><b></b><a target="_blank" href="//www.gome.com.cn/${item.paths}/know/${item.id}.html" title="${item.topic}">${item.topic}</a></li>
+						#end
+                    </ul>
+                </div>
+
+            </div>
+            <!-- .zxspzs end -->
+        </div>
+    </div>
+	<!-- 国美公共页脚 start -->
+	 <!--# include virtual="/n/common/default/foot.html"-->
+	<!-- 国美公共页脚 end -->
+<script type="text/javascript" src="//js.gomein.net.cn/js/gz/adobe/s_code-gz.js"></script>
+	<script language="javascript">
+	   s.pageName="热门专题:专题列表页";
+	   s.channel=s.pageName.split(':')[0];
+	   s.prop1=s.pageName.split(':')[0]+":"+s.pageName.split(':')[1];
+	   s.prop4="热门专题";
+	   s.eVar3="专题列表页";
+	   var s_code=s.t();
+	   if(s_code)document.write(s_code);
+	</script>
+##<script>
+##(function(){
+##    var bp = document.createElement('script');
+##    bp.src = '//push.zhanzhang.baidu.com/push.js';
+##    var s = document.getElementsByTagName("script")[0];
+##    s.parentNode.insertBefore(bp, s);
+##})();
+##</script>
+
+</body>   
+</html>

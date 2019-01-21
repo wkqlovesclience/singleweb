@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gomeJsConfig>
+	<!-- 是否使用压缩的文件 -->
+	<isUseMin>false</isUseMin>
+	<!-- 是否启用版本 -->
+	<isUseVersion>false</isUseVersion>
+	<!--域名定义 -->
+	<cssDomain>
+		<domain id="css" path="http://www.localhost.com.cn:7003/ecdocroot" />
+	</cssDomain>
+	<jsDomain>
+		<domain id="app" path="http://localhost:7003/ecdocroot" />
+		<domain id="js" path="http://js.localhost.com.cn:7003/ecdocroot" />
+	</jsDomain>
+</gomeJsConfig>

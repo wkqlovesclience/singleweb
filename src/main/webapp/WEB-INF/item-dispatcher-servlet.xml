@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+  http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    
+  
+	<!-- stage-util -->
+	<import resource="classpath:application-util-all.xml" />
+	
+	<!-- redis -->
+	<import resource="classpath:spring-gcache.xml" />
+	
+	<!-- data-source-->
+	<import resource="classpath:spring-dataSource.xml" />
+	
+	<!-- mybatis-->
+	<import resource="classpath:spring-mybatis.xml" />
+	
+	<!-- stage-config -->
+	<import resource="classpath:application-config-all.xml" />
+	
+	<!-- freemarker -->
+	<import resource="classpath:spring-freemarker.xml" />
+	
+	<!-- velocity -->
+	<import resource="classpath:spring-velocity.xml" />
+
+	<import resource="classpath:application-config-for-diamond.xml" />
+	<import resource="classpath:dubbo-customer.xml"/>
+    <import resource="classpath:application.xml" />
+    
+    <!-- 手动配置HandlerAdapter和RequestMappingHandlerMapping-->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="useSuffixPatternMatch" value="true" />
+	</bean>
+	<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" /> -->
+	
+	
+
+	<!-- <context:annotation-config /> -->
+	<context:component-scan base-package="com.gome.stage.**"/>
+	
+    
+    <!-- 3.2 配置多个视图解析 -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="viewResolvers">
+            <list>
+                <bean id="viewResolver_velocity"
+			          class="com.gome.stage.viewresolver.SEO301VeloCityViewResolver">
+					<property name="viewClass" value="com.gome.stage.utils.VelocityToolboxViewConfig"/>
+					<property name="cache" value="false"/>
+					<property name="suffix" value=".vm"/>
+					<property name="contentType" value="text/html;charset=utf-8"/>
+					<property name="viewNames" value="vm*"></property>
+					<property name="order" value="0"></property>
+					<property name="toolboxConfigLocation" value="WEB-INF/tools.xml"/>
+			    </bean>
+
+                <bean id="viewResolver_freemarker"
+			      class="com.gome.stage.viewresolver.SEO301FreeMarkerViewResolver">
+				    <property name="suffix">
+				        <value>.ftl</value>
+				    </property>
+				    <property name="contentType" value="text/html;charset=UTF-8"></property>
+				    <property name="viewNames" value="*"></property>
+			        <property name="order" value="1"></property>
+			    </bean>
+            </list>
+        </property>
+    </bean>
+
+</beans>
+

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://m.gome.com.cn/mtopic/A.html -->
+<html style="font-size: 20px;">
+  <head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>【${tag_key.names}产品大全】${tag_key.names}相关热门产品大全-国美手机版</title>
+    	<meta name="keywords" content="${tag_key.names}大全,${tag_key.names}产品大全">
+    <meta name="description" content="国美手机版(m.gome.com.cn)为您提供${tag_key.names}相关产品大全,在这里您可以了解更多关于${tag_key.names}的相关信息。">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="applicable-device" content="mobile">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+	<link rel="canonical" href="//www.gome.com.cn/topic/${tag_key.id}.html">
+    <link rel="stylesheet" href="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/css/base.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/css/swiper.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/css/seo-wap-details.css" media="screen" title="no title" charset="utf-8">
+</head>
+<body data-page="m">
+<nav class="nav" id="wap_address">
+    <div class="toolbar" style="display:block">
+        <span class="nav_return nav_ico nav_back" id="nav_return" data-icon="0"></span>
+        <h2 class="ellipsis">商品专题</h2>
+    </div>
+</nav>
+<div class="g_head">
+    <a title="首页" href="//m.gome.com.cn/">首页</a>
+    <span>&gt;</span>
+    <a title="商品专题" href="//m.gome.com.cn/mtopic/" >商品专题</a>
+     <span>&gt;</span>
+    <a title="商品专题" href="#" class="on">${tag_key.names}标签列表</a>
+</div>
+<section class="sub_list">
+    <div class="list_out">
+        <ul class="clearfix">
+               <!-- 专题标签列表模块  begin -->
+              #foreach($item in $title_list)
+       #set($topicpath = $item.paths)
+       #if($topicpath.indexOf('topic') == 0)
+       #set($topicpath = 'm' + $topicpath)
+       #end
+	<li>
+	<a title="${item.title}" href="//m.gome.com.cn/${topicpath}/" target="_blank">${item.title}</a>	
+	</li>
+#end
+              <!-- 专题标签列表模块   end -->
+        </ul>
+    <div>
+</section>
+
+
+<footer class="common_footer">
+	<div class="foot_tips">
+		国美专题频道为您提供<span>热门产品报价,热门产品大全,最新报价,价格,介绍,图片,评论,咨询</span>等信息.<br>全部商品品质保证,严格把关保质期.国美在线,让您放心购物
+	</div>
+    <div class="foot_msg">
+        <ul class="msg_versions grid3">
+            <li class="active">
+                <a>
+                    <div class="icon">
+                        <img src="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/images/version_phone.png">
+                        <img class="depper" src="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/images/version_phone_2.png">
+                        <em class="hint"></em>
+                    </div>
+                    <span class="name">触屏版</span>
+                </a>
+            </li>
+            <li>
+                <a id="appdownload">
+                    <div class="icon">
+                        <img src="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/images/version_app.png">
+                        <img class="depper" src="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/images/version_app_2.png">
+                        <em class="hint"><img src="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/images/new_gift.png"></em>
+                    </div>
+                    <span class="name">客户端</span>
+                </a>
+            </li>
+            <li>
+                <a onclick="urlClick(this)" href="//www.gome.com.cn/" params="jump=wtp">
+                    <div class="icon">
+                        <img src="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/images/version_pc.png">
+                        <img class="depper" src="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/images/version_pc_2.png">
+                        <em class="hint"></em>
+                    </div>
+                    <span class="name">电脑版</span>
+                </a>
+            </li>
+        </ul>
+        <div class="copyright">
+            <p>copyright &#169;  2000-2017 gome.com.cn</p>
+            <p>客服热线：4008-708-708</p>
+        </div>
+    </div>    
+</footer>
+	<script type="text/javascript" src="//www.sucainiu.com/themes/cdn/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="//js.gomein.net.cn/??/gmpro/1.0.0/seo/1.0.0/js/idangerous.swiper.min.js"></script>
+<!-- 百度统计代码 -->
+<!-- end -->
+<script>
+
+function tabs(classname,indexlist){ //tab切换
+    var obj = $(classname);
+
+    indexlist = new Swiper(classname,{
+        speed:100,
+        onSlideChangeStart: function(){
+            var j = indexlist.activeIndex;
+            obj.find(".tabs .on").removeClass('on');
+            obj.find(".tabs li").eq(indexlist.activeIndex).addClass('on');
+        }
+    });
+    obj.find(".tabs li").on('touchstart mousedown',function(e){
+        e.preventDefault()
+       obj.find(".tabs .on").removeClass('on');
+        $(this).addClass('on');
+        indexlist.swipeTo($(this).index());
+
+        var i = $(this).index();
+        var content_height = obj.find(".content_div").eq(i).height();
+        var slide_height = obj.find(".swiper-slide").eq(i).height(content_height);
+        obj.find(".swiper-wrapper").css("height", content_height);
+        loadMore(3, 0, 2, '.view_more'); //调用更多函数
+
+
+    });
+    obj.find(".tabs li").click(function(e){
+        e.preventDefault();
+    });
+
+    
+}
+tabs(".ranking_list-0",'list1');
+tabs(".ranking_list-1",'list2');
+//自适应
+div_height(".content_div");  //调用 
+function div_height(odiv){
+    var s = $(odiv);
+
+    var content_height = s.height();
+    var slide_height = s.parent(".swiper-slide").height(content_height);
+    s.parents(".swiper-wrapper").css("height", content_height);
+
+}
+
+//加载更多 i表示从第几个开始   t是一次加载几个 j是show的个数
+loadMore(3, 0, 2, '.view_more');
+function loadMore(i, j, t, selector) {
+    function load() {
+        var ul = this.previousElementSibling,
+            li = ul.children,
+            lth = li.length;
+        if (i + t < lth) {
+            j = i + t;
+        } else {
+            j = lth;
+            $(this).html("没有更多了~");
+        }
+        for (; i < j; i++) {
+            $(li[i]).addClass('show');
+            window.scrollTo(0, window.scrollY + 1);
+        }
+        //div_height(".content_div");  //调用
+        var content_height = $(this).parent(".content_div").height();
+        var slide_height = $(this).parents(".swiper-slide").height(content_height);
+        $(this).parents(".swiper-wrapper").css("height", content_height);
+    }
+
+    if($(selector)) {
+        $(selector).bind('click', load);
+    }
+
+};
+</script>
+<div></div></body></html>

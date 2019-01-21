@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+    #if($env=="live")
+        #set($staticdomain = "gomein.net.cn")
+        #set($gomedomain = "//www.gome.com.cn")
+        #set($wapgomedomain = "//m.gome.com.cn")
+    #else
+        #set($staticdomain = "gomein.net.cn")
+        #set($gomedomain = "//www.atguat.com.cn")
+        #set($wapgomedomain = "//m.gome.com.cn")
+    #end
+    #set($urlHead = "newtop10")
+    #set($urlEnd = "")
+<head>
+    <title>国美排行榜-热门商品排行榜，产品大全!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="排行榜,产品排行榜,热门产品排行榜,风云榜" />
+    <meta name="description" content="国美排行榜提供所有家电IT数码以及家电、生活电器的排行榜，包含热门商品排行榜、热门品牌排行榜，如手机排行榜、笔记本电脑排行榜、平板电脑排行榜、电视机品牌排行榜、洗衣机品牌排行榜等，让你了解到热门产品。" />
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="applicable-device" content="pc">
+    <meta http-equiv="mobile-agent" content="format=html5; url=${wapgomedomain}/${urlHead}/">
+    <link rel="canonical" href="${gomedomain}/${urlHead}">
+    <link rel="alternate" media="only screen and(max-width: 640px)" href="${wapgomedomain}/${urlHead}/">
+    <!--# include virtual="/n/common/global/global.html"-->
+    <link rel="stylesheet" href="<!--# include virtual='/n/common/default/style.html'-->">
+    <link href="//css.${staticdomain}/channels/pcrank/css/SEO-Ranking.css" rel="stylesheet">
+    <link rel="shortcut icon" href="//app.gomein.net.cn/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<!-- 国美公共头 start -->
+<!--# include virtual="/n/common/default/head.html"-->
+<!-- 国美公共头 end -->
+<script src="<!--# include virtual='/n/common/default/script.html'-->"></script>
+<script src="//js.${staticdomain}/channels/pcrank/js/SEO-Ranking.js"></script>
+<div class="w1200">
+    <div class="home_cont clearfix">
+        <div class="sr_left">
+            <div id="sr_category" class="sr_category">
+                <ul class="nav-ul">
+                    #foreach($item in $categorys)
+                        #if($velocityCount == 1)
+                        <li class="cat_item first">
+                        #else
+                        <li class="cat_item">
+                        #end
+                        <div class="cat_cont">
+                            <div class="cat_lite">
+                                <h3>
+                                    <div class="links">
+                                        <a href="javascript:">${item.parentName}</a>
+                                    </div>
+                                    <i class="arrow"></i>
+                                </h3>
+                                <div class="category3_lite">
+                                    #foreach($category in $item.subList)
+                                        #if($velocityCount <= 6)
+                                            <a href="${gomedomain}/${urlHead}/${category.cid}${urlEnd}" target="_blank">${category.categoryName}</a>
+                                        #end
+                                    #end
+                                </div>
+                            </div>
+                            <div class="cat_full">
+                                <ul class="cat_list">
+                                    #foreach($category in $item.subList)
+                                        #if($velocityCount > 6)
+                                            <li><a href="${gomedomain}/${urlHead}/${category.cid}${urlEnd}" target="_blank">${category.categoryName}</a></li>
+                                        #end
+                                    #end
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    #end
+                </ul>
+            </div>
+            <div class="left_list sr_hot">
+                <div class="tit">热门专题</div>
+                <div class="hot_list">
+                    <ul>
+                        #foreach($item in $hot_title)
+                            <li><a href="${gomedomain}/${item.paths}/" target="_blank">${item.title}</a></li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+            <div class="left_list sr_comment">
+                <div class="tit">最新商品评论</div>
+                <div class="hot_list">
+                    <ul>
+                        #foreach($comment in $hot_comment)
+                            <li><i></i><a href="${comment.href}" target="_blank">${comment.content}</a></li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="sr_right">
+            <div class="sr_floor">
+                <div class="unify_height clearfix">
+                    <div class="sf_left">
+                        <div class="sf_border">
+                            <div class="title">新品排行</div>
+                            <div class="chart_box">
+                                <div id="rank_new" class="sf_chart rank_new"></div>
+                            </div>
+                            <div class="goods_box">
+                                <ul class="rank_tit">
+                                    <li class="t1">排名</li>
+                                    <li class="t1">商品图片</li>
+                                    <li class="t2">商品名称</li>
+                                    <li class="t3">价格</li>
+                                </ul>
+                                <div id="new_goods_list" class="goods_list format_num">
+                                    <ul>
+                                        #foreach($rank in $all_newrankMap)
+                                            #if($velocityCount<=10)
+                                                <li data-time="${rank.time}" data-appraise="${rank.good}" data-grade="${rank.recommend}">
+                                                    #if($velocityCount <=3)
+                                                        <i class="num red">${velocityCount}</i>
+                                                    #else
+                                                        <i class="num">${velocityCount}</i>
+                                                    #end
+                                                    <a class="img" href="${rank.purl}" target="_blank">
+                                                        <img src="${rank.product.img1}">
+                                                    </a>
+                                                    <div class="name">
+                                                        <a class="name_link" href="${rank.purl}" target="_blank">${rank.product.skuName}</a>
+                                                    </div>
+                                                    <div class="inf">
+                                                        #if(!${rank.price})
+                                                            <div class="price">暂无报价</div>
+                                                        #else
+                                                            <div class="price">&#165;<span>$number.format('.00',${rank.price})</span></div>
+                                                        #end
+                                                        <div class="star"><b style="width: 100%;"></b></div>
+                                                        <div class="comment">评论：<a href="${rank.purl}" target="_blank"><span>${rank.commentNum}</span>条</a></div>
+                                                    </div>
+                                                </li>
+                                            #end
+                                        #end
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sf_right">
+                        <div class="sf_border">
+                            <div class="title">爆品排行</div>
+                            <div class="chart_box">
+                                <div id="rank_hot" class="sf_chart rank_hot"></div>
+                            </div>
+                            <div class="goods_box">
+                                <ul class="rank_tit">
+                                    <li class="t1">排名</li>
+                                    <li class="t1">商品图片</li>
+                                    <li class="t2">商品名称</li>
+                                    <li class="t3">价格</li>
+                                </ul>
+                                <div id="hot_goods_list" class="goods_list format_num">
+                                    <ul>
+
+                                        #foreach($hotrank in $all_hotrankMap)
+                                            #if($velocityCount<=10)
+                                                <li data-time="2016.05.16" data-appraise="${hotrank.good}" data-volume="${hotrank.saleRate}" data-grade="${hotrank.recommend}">
+                                                    #if($velocityCount <=3)
+                                                        <i class="num red">${velocityCount}</i>
+                                                    #else
+                                                        <i class="num">${velocityCount}</i>
+                                                    #end
+                                                    <a class="img" href="${hotrank.purl}" target="_blank">
+                                                        <img src="${hotrank.product.img1}">
+                                                    </a>
+                                                    <div class="name">
+                                                        <a class="name_link" href="${hotrank.purl}" target="_blank">${hotrank.product.skuName}</a>
+                                                    </div>
+                                                    <div class="inf">
+                                                        #if(!${hotrank.price})
+                                                            <div class="price">暂无报价</div>
+                                                        #else
+                                                            <div class="price">&#165;<span>$number.format('.00',${hotrank.price})</span></div>
+                                                        #end
+                                                        <div class="star"><b style="width: 60%;"></b></div>
+                                                        <div class="comment">评论：<a href="${hotrank.purl}" target="_blank"><span>${hotrank.commentNum}</span>条</a></div>
+                                                    </div>
+                                                </li>
+                                            #end
+                                        #end
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            #if(${index_floors})
+                #foreach($floor in $index_floors)
+                    <div class="sr_floor sr_floor2">
+                        <div class="f_title">
+                            <i></i><h2>${floor.categoryName}</h2>
+                        </div>
+                        <div class="unify_height clearfix">
+                            <div class="sf_left">
+                                <div class="sf_border top_goods">
+                                    <div class="title"><h3>${floor.categoryName}商品销量top10</h3></div>
+                                    <div class="goods_box">
+                                        <ul class="rank_tit">
+                                            <li class="t1">排名</li>
+                                            <li class="t4">商品名称</li>
+                                            <li class="t2">价格</li>
+                                        </ul>
+                                        <div class="goods_list hover_unfold format_num">
+                                            <ul>
+                                                #if(${floor.rank_saleMap})
+                                                    #foreach($info in $floor.rank_saleMap)
+                                                        #if($velocityCount<=10)
+                                                            #if($velocityCount==1)
+                                                            <li class="on" data-grade="${info.recommend}">
+                                                            #else
+                                                            <li data-grade="${info.recommend}">
+                                                            #end
+                                                            #if($velocityCount <=3)
+                                                                <i class="num red">${velocityCount}</i>
+                                                            #else
+                                                                <i class="num">${velocityCount}</i>
+                                                            #end
+                                                            <div class="name">
+                                                                <a class="name_link" href="${info.purl}" target="_blank">${info.skuName}</a>
+                                                                <a class="img" href="${info.purl}" target="_blank">
+                                                                    <img src="${info.iurl}">
+                                                                </a>
+                                                            </div>
+                                                            #if(!${info.price})
+                                                                <div class="price">暂无报价</div>
+                                                            #else
+                                                                <div class="price">&#165;<span>$number.format('.00',${info.price})</span></div>
+                                                            #end
+                                                            <div class="inf">
+                                                                <div class="star">
+                                                                    <b style="width: 80%;"></b>
+                                                                </div>
+                                                                <div class="comment">
+                                                                    评论：<a href="${info.purl}" target="_blank"><span>${info.commentNum}</span>条</a>
+                                                                </div>
+                                                            </div></li>
+                                                        #end
+                                                    #end
+                                                #end
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="more">
+                                    <a href="${gomedomain}/${urlHead}/hot-${floor.cat.cid}${urlEnd}" target="_blank">更多&gt;&gt;</a>
+                                </div>
+                            </div>
+                            <div class="sf_right">
+                                <div class="sf_border top_brand">
+                                    <div class="title"><h3>${floor.categoryName}品牌销量top10</h3></div>
+                                    <div class="goods_box">
+                                        <ul class="rank_tit">
+                                            <li class="t1">排名</li>
+                                            <li class="t4">品牌名称</li>
+                                            <li class="t2">品牌销量</li>
+                                        </ul>
+                                        <div class="goods_list hover_unfold has_progress format_num">
+                                            <ul>
+                                                #if(${floor.rank_brandMap})
+                                                    #foreach($info in $floor.rank_brandMap)
+                                                        #if($velocityCount<=10)
+                                                            #if($velocityCount ==1)
+                                                            <li class="on" data-volume="${info.saleRate}">
+                                                            #else
+                                                            <li class="" data-volume="${info.saleRate}">
+                                                            #end
+                                                            #if($velocityCount <=3)
+                                                                <i class="num red">${velocityCount}</i>
+                                                            #else
+                                                                <i class="num">${velocityCount}</i>
+                                                            #end
+                                                            <div class="name">
+                                                                <a class="name_link" href="//brand.gome.com.cn/${info.facetid}-0.html" target="_blank">${info.brandSale.brandName}</a>
+                                                                <a class="img" href="//brand.gome.com.cn/${info.facetid}-0.html" target="_blank"> <img
+                                                                        src="${info.brandSale.brandLogoUrl}">
+                                                                </a>
+                                                            </div>
+                                                            <div class="progress_box">
+                                                                <i class="progress_line"></i>
+                                                            </div>
+                                                            <div class="sale_num">
+                                                                已售<span>${info.brandSale.brandSaleNum}</span>件
+                                                            </div></li>
+                                                        #end
+                                                    #end
+                                                #end
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="more">
+                                    <a href="${gomedomain}/${urlHead}/listbrand-${floor.cat.cid}${urlEnd}" target="_blank">更多&gt;&gt;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                #end
+            #end
+        </div>
+    </div>
+</div>
+<!-- 国美公共页脚 start -->
+<!--# include virtual="/n/common/default/foot.html"-->
+<!-- 国美公共页脚 end -->
+<script type="text/javascript" src="//js.gomein.net.cn/js/gz/adobe/s_code-gz.js"></script>
+<script type="text/javascript">
+    s.pageName="排行榜首页";
+    s.channel="排行榜";
+    s.prop1="排行榜首页";
+    s.prop2="排行榜首页";
+    s.prop3="排行榜首页";
+    s.prop4="排行榜";
+    var s_code=s.t();
+    if(s_code)document.write(s_code);
+</script>
+##<script>
+##    function(){
+##        var bp = document.createElement('script');
+##        var curProtocol = window.location.protocol.split(':')[0];
+##        if (curProtocol === 'https') {
+##            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+##        }
+##        else {
+##            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+##        }
+##        var s = document.getElementsByTagName("script")[0];
+##        s.parentNode.insertBefore(bp, s);
+##    })();
+##</script>
+</body>
+</html>

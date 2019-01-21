@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gome.stage.mapper.rank.FacetGroupMapper" >
+
+    <sql id="selectFacetGroupSql">
+		b.id, b.groupid as groupId, b.categoryid categoryId, b.displayname displayName, b.weight, b.type, b.facetid,
+		b.isshow, b.insertdate insertDate, b.creator, b.updator, b.updatedate updateDate
+	</sql>
+
+    <sql id="facetGroupTable">
+		t_facetgroup b
+	</sql>
+
+    <select id="listByWheres" parameterType="Map" resultType="com.gome.stage.entity.rank.FacetGroup">
+        SELECT
+        <include refid="selectFacetGroupSql"/>
+        FROM
+        <include refid="facetGroupTable"/>
+
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+            <if test="qgroupid != null">AND b.groupid=#{qgroupid} </if>
+            <if test="qcategoryid != null">AND b.categoryid=#{qcategoryid} </if>
+            <if test="qis_show != null">AND b.isshow=#{qis_show} </if>
+            <if test="qtype != null">AND b.type=#{qtype} </if>
+
+        </trim>
+        ORDER BY b.weight asc,b.updatedate desc
+    </select>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gome.stage.mapper.rank.CategoryMapper" >
+
+    <resultMap id="Category" type="com.gome.stage.entity.rank.Category">
+        <result property="cid" column="cid" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id"  jdbcType="VARCHAR"/>
+        <result property="categoryName" column="name" jdbcType="VARCHAR"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time"  jdbcType="VARCHAR"/>
+        <result property="creator" column="creator"  jdbcType="VARCHAR"/>
+        <result property="updator" column="updator" jdbcType="VARCHAR"/>
+        <result property="isShow" column="is_show"  jdbcType="INTEGER"/>
+        <result property="level" column="level"  jdbcType="INTEGER"/>
+        <result property="ispublish" column="is_publish"  jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- the selected fields of t_category table -->
+    <sql id="selectCategory">
+		b.cid, b.id, b.name as categoryName, b.parent_id parentId, b.sort, b.is_show isShow, b.create_time createTime,
+		b.creator, b.updator, b.update_time updateTime, b.level, b.is_publish ispublish
+	</sql>
+
+    <!-- category table name -->
+    <sql id="categoryTable">
+		t_category b
+	</sql>
+
+    <!-- query category by id -->
+    <select id="getById" parameterType="string" resultType="com.gome.stage.entity.rank.Category">
+        SELECT
+        <include refid="selectCategory"/>
+        FROM
+        <include refid="categoryTable"/>
+        WHERE b.id = #{id}
+    </select>
+
+    <!-- query category by id -->
+    <select id="getByCid" parameterType="string" resultType="com.gome.stage.entity.rank.Category">
+        SELECT
+        <include refid="selectCategory"/>
+        FROM
+        <include refid="categoryTable"/>
+        WHERE b.cid = #{cid}
+    </select>
+
+    <select id="listByWheres" parameterType="Map" resultType="com.gome.stage.entity.rank.Category">
+        SELECT
+        <include refid="selectCategory"/>
+        FROM
+        <include refid="categoryTable"/>
+
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+            <if test="qcid != null">AND b.cid=#{qcid} </if>
+            <if test="qid != null">AND b.id=#{qid} </if>
+            <if test="qcreator != null">AND b.creator=#{qcreator} </if>
+            <if test="qparent_id != null">AND b.parent_id=#{qparent_id} </if>
+            <if test="qispublish != null">AND b.is_publish=#{qispublish} </if>
+            <if test="qis_show != null">AND b.is_show=#{qis_show} </if>
+            <if test="qsort != null">AND b.sort=#{qsort} </if>
+
+
+             <!--<if test="paramMap.containsKey('qcid')"> AND b.cid=#{qcid}</if>-->
+
+             <!--<if test="paramMap.containsKey('qid')"> AND b.id=#{qid}</if>-->
+
+            <!--<if test="paramMap.containsKey('qcreator')"> AND b.creator=#{qcreator}</if>-->
+
+            <!--<if test="qparent_id!= null" >AND b.parent_id=#{qparent_id}</if>-->
+
+            <!--<if test="paramMap.containsKey('qispublish')"> AND b.is_publish=#{qispublish}</if>-->
+
+            <!--<if test="paramMap.containsKey('qis_show')"> AND b.is_show=#{qis_show}</if>-->
+
+            <!--<if test="paramMap.containsKey('qsort')"> AND b.sort=#{qsort}</if>-->
+
+        </trim>
+        ORDER BY b.sort ASC, b.update_time DESC
+    </select>
+
+    <!-- 排行榜列表页：获取同一级父类的三级分类 -->
+    <select id="getRelatedCategoryList" parameterType="Map" resultType="java.util.HashMap">
+        select cid,name
+        from <include refid="categoryTable"/>
+        where b.parent_id=#{parentId} and b.cid != #{cid} and b.is_show = 1 and b.is_publish = 1
+        limit 0,10
+    </select>
+
+
+</mapper>

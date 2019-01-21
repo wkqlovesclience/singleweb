@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gome.stage.mapper.ICategoryMapper" >
+
+	<sql id="selectCategorySql">
+		b.cid, b.id, b.name as categoryName, b.parent_id parentId, b.sort, b.is_show isShow, b.create_time createTime,
+		b.creator, b.updator, b.update_time updateTime, b.level, b.is_publish ispublish
+	</sql>
+
+	<!-- category table name -->
+	<sql id="categoryTable">
+		t_category b
+	</sql>
+
+	<!-- 查询热词列表 -->
+	<select id="list" parameterType="java.util.Map" resultType="com.gome.stage.entity.Category">
+		SELECT
+		<include refid="selectCategorySql"/>
+		FROM
+		<include refid="categoryTable"/>
+
+		<where>
+			<if test="qcid != null">
+				AND b.cid = #{qcid}
+			</if>
+
+			<if test="qid != null">
+				AND b.id = #{qid}
+			</if>
+
+			<if test="qcreator != null">
+				AND b.creator = #{qcreator}
+			</if>
+
+			<if test="qparent_id != null">
+				AND b.parent_id = #{qparent_id}
+			</if>
+			<if test="qispublish != null">
+				AND b.is_publish = #{qispublish}
+			</if>
+			<if test="qis_show != null">
+				AND b.is_show = #{qis_show}
+			</if>
+			<if test="qsort != null">
+				AND b.sort = #{qsort}
+			</if>
+			<if test="qname != null">
+				AND upper(b.name) like CONCAT('%',upper(trim(#{qname})),'%')
+			</if>
+			<if test="qcreate_time != null">
+				AND DATE_FORMAT(b.create_time,'%Y-%m-%d') = #{qcreate_time}
+			</if>
+		</where>
+		ORDER BY sort ASC, update_time DESC
+	</select>
+
+	<select id="listByWhere" parameterType="java.util.Map" resultType="com.gome.stage.entity.Category">
+		SELECT
+		<include refid="selectCategorySql"/>
+		FROM
+		<include refid="categoryTable"/>
+		<where>
+			<if test="qcid != null">
+				AND b.cid = #{qcid}
+			</if>
+			<if test="qid != null">
+				AND b.id = #{qid}
+			</if>
+
+			<if test="qcreator != null">
+				AND b.creator = #{qcreator}
+			</if>
+
+			<if test="qparent_id != null">
+				AND b.parent_id = #{qparent_id}
+			</if>
+			<if test="qispublish != null">
+				AND b.is_publish = #{qispublish}
+			</if>
+			<if test="qis_show != null">
+				AND b.is_show = #{qis_show}
+			</if>
+			<if test="qsort != null">
+				AND b.sort = #{qsort}
+			</if>
+			<if test="qname != null">
+				AND upper(b.name) like CONCAT('%',upper(trim(#{qname})),'%')
+			</if>
+			<if test="qcreate_time != null">
+				AND DATE_FORMAT(b.create_time,'%Y-%m-%d') = #{qcreate_time}
+			</if>
+		</where>
+		ORDER BY sort ASC, update_time DESC
+
+		<if test="startLocation != null">
+			LIMIT #{startLocation},#{pageSize}
+		</if>
+	</select>
+
+
+	<select id="count" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(b.cid) FROM <include refid="categoryTable"/>
+		<where>
+			<if test="qcid != null">
+				AND b.cid = #{qcid}
+			</if>
+
+			<if test="qid != null">
+				AND b.id = #{qid}
+			</if>
+
+			<if test="qcreator != null">
+				AND b.creator = #{qcreator}
+			</if>
+
+			<if test="qparent_id != null">
+				AND b.parent_id = #{qparent_id}
+			</if>
+			<if test="qispublish != null">
+				AND b.is_publish = #{qispublish}
+			</if>
+			<if test="qis_show != null">
+				AND b.is_show = #{qis_show}
+			</if>
+			<if test="qsort != null">
+				AND b.sort = #{qsort}
+			</if>
+			<if test="qname != null">
+				AND upper(b.name) like CONCAT('%',upper(trim(#{qname})),'%')
+			</if>
+			<if test="qcreate_time != null">
+				AND DATE_FORMAT(b.create_time,'%Y-%m-%d') = #{qcreate_time}
+			</if>
+		</where>
+	</select>
+</mapper>

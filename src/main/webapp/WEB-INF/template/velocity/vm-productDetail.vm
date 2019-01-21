@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    #set($domainsite = '//www.gome.com.cn')
+    #set($t_ids = ${title_key.id} / 1000)
+    #set($topicsite = '//www.gome.com.cn/')
+    #set($newtopicsite = '//www.gome.com.cn/')
+    #set($mnewtopicsite = '//m.gome.com.cn')
+    #set($hotLinks =${title_key.hotlinkList})
+    #set($topicpath = $title_key.paths)
+    #if($topicpath.indexOf('topic') == 0)
+        #set($topicpath = 'm' + $topicpath)
+    #end
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>【${title_key.title}介绍】参数_规格_性能_功能 -国美</title>
+    <meta name="keywords" content="${title_key.title},参数,规格,性能,功能" />
+    <meta name="description" content="国美(Gome.com.cn)为您提供${title_key.title}商品详情、规格参数、性能、功能等最新、最全的${title_key.title}相关选购详情信息。" />
+    <link rel="alternate" media="only screen and(max-width: 640px)" href="${mnewtopicsite}/${topicpath}/content.html">
+    <meta name="mobile-agent" ontent="format=html5;url=${mnewtopicsite}/${topicpath}/content.html">
+    <meta name="applicable-device" content="pc">
+    <link rel="canonical" href="//www.gome.com.cn/${title_key.paths}/content.html" >
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <!--# include virtual="/n/common/global/global.html"-->
+    <link rel="stylesheet" href="<!--# include virtual='/n/common/default/style.html'-->">
+    <link rel="stylesheet" href="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/css/seo-common.css"/>
+    <link rel="shortcut icon" href="//app.gomein.net.cn/favicon.ico" type="image/x-icon">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?fcb189c645a553beedb0750841344517";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+    </script>
+    <style type="text/css"><!--#detailHtml{overflow:hidden}#detailHtml img{display:block;margin:0 auto}--></style>
+</head>
+
+<body>
+<!-- 国美公共头 start -->
+<!--# include virtual="/n/common/default/head.html"-->
+<!-- 国美公共头 end -->
+<script src="<!--# include virtual='/n/common/default/script.html'-->"></script>
+<script src="//js.gomein.net.cn/gmlib/ui/jgroll/1.0.0/jgroll.js"></script>
+<script type="text/javascript" src="//js.gomein.net.cn/??/gmpro/1.0.0/seo/1.0.0/js/seo-common.js"></script>
+<script type="text/javascript" src="//js.gomein.net.cn/??/gmpro/1.0.0/seo/1.0.0/js/share.js"></script>
+<div class="w1200">
+    <div class="crumb">
+        <ul>
+            <li><a href="//www.gome.com.cn/">首页</a><i class="crumb_arrow"></i></li>
+            <li> <a href="${domainsite}/topic/" title="商品专题">商品专题</a><i class="crumb_arrow"></i></li>
+            <li><a href="${domainsite}/${title_key.paths}/">${title_key.title}</a><i class="crumb_arrow"></i></li>
+            <li>${title_key.title}详情</li>
+        </ul>
+    </div>
+    <div class="topic_title">
+        <h1>${title_key.title}</h1>
+        <div class="tag">
+            <h4>标签：</h4>
+            <ul>
+                #foreach( $item in $tag_list )
+                    <li>
+                        <a title="${item.names}" href="${topicsite}topic/${item.id}.html"  target="_blank">${item.names}</a>
+                    </li>
+                #end
+            </ul>
+        </div>
+    </div>
+    <div class="topic_main clearfix">
+        <div class="goods_show">
+            <div class="goods_info clearfix">
+                <div class="pre-images fl j-grollbox">
+                    <div class="magnifier">
+                        <div class="pic-big">
+                            <div class="jqzoom">
+                                #foreach ($item in $zhuanTiGoodsImages)
+                                    #if($velocityCount == 1)
+                                        #set($curImageUrl=$item.imgUrl)
+                                        #set($href=$item.href)
+                                        #set($curName=$item.productname)
+                                    #end
+                                #end
+                                <a href="${href}" target="_blank" title="${curName}">
+                                    <img  width="360" height="360" class="j-bpic-b" src="$!{curImageUrl}_360.jpg" alt="${curName}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="pic-list j-listroll">
+                            <div class="pic-btn">
+                                <a href="javascript:void(0);" class="pic-btn-l"> <b class="j-gRbtnU "><s></s></b></a>
+                                <a href="javascript:void(0);" class="pic-btn-r"> <em class="j-gRbtnD cur"><i></i></em> </a>
+                            </div>
+                            <div class="pic-small j-gRbox j-pichover clearfix">
+                                <ul>
+                                    #foreach ($item in $zhuanTiGoodsImages)
+                                        #if($velocityCount == 1)
+                                            #set($curClass='cur')
+                                        #else
+                                            #set($curClass='')
+                                        #end
+                                        <li class="$curClass">
+                                            <a  title="${item.productname}"  href="javascript:void(0);">
+                                                <img width="50" height="50"  bpic="${item.imgUrl}_360.jpg" src="${item.imgUrl}_50.jpg" alt="">
+                                            </a>
+                                        </li>
+                                    #end
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                #set($status = ${goodsStatus})
+                #if($status == 4)
+                    #set($statusClass='info_cont')
+                #else
+                    #set($statusClass='info_cont sold_out')
+                #end
+                <div class="${statusClass}">
+                    #if(!${skuId})
+                        <h2><a href="//item.gome.com.cn/${title_key.goodsId}.html" target="_blank">${title_key.goodsName}</a></h2>
+                    #else
+                        <h2><a href="//item.gome.com.cn/${title_key.goodsId}-${skuId}.html" target="_blank">${title_key.goodsName}</a></h2>
+                    #end
+                    <div class="brand">品&nbsp;&nbsp;&nbsp;&nbsp;牌：<a href="//brand.gome.com.cn/$!{facetId}-0.html" target="_blank" title="$!{brandname}">$!{brandname}</a></div>
+                    <div class="grade">
+                        <div class="star"><b style="width:${haoping}%"></b></div>
+                        <a href="//review.gome.com.cn/${title_key.goodsId}-0-1.html" target="_blank">已有$!{commentNum}人评价</a>
+                    </div>
+                    <div class="serve">
+                        <ul>
+                            <li class="zpbz"><i></i>正品保障</li>
+                        </ul>
+                    </div>
+                    <div class="price_cont">
+                        <div class="price"><i>&#165;</i>$number.format('.00',${goodPrice})</div>
+                        <div class="sold_out_text">此商品已下架</div>
+                        <a class="shareGold" href="javascript:;" onclick='_GmFxb.FxbDiv(0,"//www.gome.com.cn","国美天天见","","body","","","","","","","","","")'><i></i>分享</a>
+                    </div>
+                    #if(!${skuId})
+                        <a rel="nofollow" href="//item.gome.com.cn/${title_key.goodsId}.html" class="buy_btn">立即购买&gt;&gt;</a>
+                    #else
+                        <a rel="nofollow" href="//item.gome.com.cn/${title_key.goodsId}-${skuId}.html" class="buy_btn">立即购买&gt;&gt;</a>
+                    #end
+                    <a href="//list.gome.com.cn/${thridCatItemId}.html" target="_blank" class="relate_link">点击查看更多相关商品&gt;&gt;</a>
+                </div>
+            </div>
+            <div class="goods_relate">
+                <div class="nav">
+                    <ul>
+                        <li ><a href="//www.gome.com.cn/${title_key.paths}/" title="${title_key.title}商品综述">商品综述</a></li>
+                        <li  class="on"><a href="//www.gome.com.cn/${title_key.paths}/content.html" title="${title_key.title}商品详情" >商品详情</a></li>
+                        <li><a href="//www.gome.com.cn/${title_key.paths}/price.html"  title="${title_key.title}报价">报价</a></li>
+                        <li><a href="//www.gome.com.cn/${title_key.paths}/images.html"  title="${title_key.title}图片">图片</a></li>
+                        <li><a href="//www.gome.com.cn/${title_key.paths}/comments.html" title="${title_key.title}商品评价" >商品评价</a></li>
+                        <li><a href="//www.gome.com.cn/${title_key.paths}/consulting.html" title="${title_key.title}购买咨询">购买咨询</a></li>
+                        <li><a href="//www.gome.com.cn/${title_key.paths}/product.html"  title="${title_key.title}相关商品">相关商品</a></li>
+
+                    </ul>
+                </div>
+                <div id="detailHtml">
+                    <script type="text/javascript" src="//js.gomein.net.cn/gmlib/ui/gloadsrc/jquery.loadsrc.min.js"></script>
+                    <!-- 商品详细模块  begin --->
+                    <!--<coo8publishblock name="product_details" type="0"/>-->
+                    <!-- 商品详细模块   end --->
+
+                    #if($desc_key)
+                        $desc_key
+                    #end
+                </div>
+            </div>
+            <div class="goods_relate">
+                <div class="floor">
+                    <div class="links">
+                        <div class="explain">${title_key.title}详情描述：国美在线（gome.com.cn）${title_key.title}详情频道为您提供关于该商品的详细介绍,帮您更加客观的了解该商品 <a href="${mnewtopicsite}/mtopic/${title_key.id}/content.html" >${title_key.title}详情移动版</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="generalize">
+            <!-- 广告位 1 start-->
+            <div style="width:210px;height:210px;" id="adDiv" ></div>
+            <script src="//js.meixincdn.com/gas/js/gaxflightpage.min.js"" ></script>
+            <script>
+            mxAd.requestAd(document.getElementById("adDiv"), "10088",{extraParam:{}});
+            /* requestAd方法的参数说明：
+               第一个是元素对象
+               第二个是广告位ID
+               第三个是option，目前支持下面三个属性
+               success: 广告成功展示后的回调
+               failed: 广告失败的回调
+               extraParam: 附件参数，一个对象，会把这个对象里属性传回广告系统 */
+            </script>
+            <!-- 广告位 1 end-->
+            <div class="module">
+                <div class="tit">大家都在买</div>
+                <div class="commend_cont">
+                    <ul>
+                        #foreach($item in $everyOneSerach)
+                            <li >
+                                <div class="num">$velocityCount</div>
+                                <div class="img">
+                                    <a href="${item.purl}" target="_blank">
+                                        <img alt="${item.pn}" src="${item.iurl}">
+                                    </a>
+                                </div>
+                                <div class="link">
+                                    <p class="link_name">
+                                        <a target="_blank" href="${item.purl}">${item.pn}</a></p>
+                                    <p class="price">
+                                <span class="price_val">
+                                    #if(${item.price}&&${item.price}!="")
+                                    &#165;<strong>$number.format('.00',${item.price})</strong>
+                                    #else
+                                        暂无报价
+                                    #end
+                                </span>
+                                    </p>
+                                </div>
+                            </li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+            <div class="module">
+                <div class="tit">品牌专区</div>
+                <div class="brand_cont">
+                    <ul>
+                        #foreach($item in $brandZoneList)
+                            <li>
+                                <a title="${item.brandname}" href="${item.bandurl}" target="_blank">
+                                    <p>${item.brandname}</p>
+                                </a>
+                            </li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+            <div class="module">
+                <div class="tit">大家都在看</div>
+                <div class="other_cont">
+                    <ul>
+                        #if($tecentList && $tecentList.size() > 0)
+                            #foreach($item in $tecentList)
+                                <li>
+                                    <a  href="${topicsite}${item.url}.html" target="_blank">${item.name}</a>
+                                </li>
+                            #end
+                        #end
+                    </ul>
+                </div>
+            </div>
+            <!-- 广告位2 start-->
+            <div style="width:210px;height:210px;" id="adDiv1" ></div>
+            <script src="//js.meixincdn.com/gas/js/gaxflightpage.min.js"" ></script>
+            <script>
+            mxAd.requestAd(document.getElementById("adDiv1"), "10089",{extraParam:{}});
+            /* requestAd方法的参数说明：
+               第一个是元素对象
+               第二个是广告位ID
+               第三个是option，目前支持下面三个属性
+               success: 广告成功展示后的回调
+               failed: 广告失败的回调
+               extraParam: 附件参数，一个对象，会把这个对象里属性传回广告系统 */
+            </script>
+            <!-- 广告位 2 end-->
+            <!-- 广告位 -->
+            <a href="javascript:" target="_blank" class="advert">
+                <!--# include virtual="/n/common/ads/seoyongxia/index.html"-->
+            </a>
+        </div>
+    </div>
+</div>
+<!-- 国美公共页脚 start -->
+<!--# include virtual="/n/common/default/foot.html"-->
+<!-- 国美公共页脚 end -->
+<script type="text/javascript" src="//js.gomein.net.cn/js/gz/adobe/s_code-gz.js"></script>
+<script language="javascript">
+    s.pageName="热门专题:${title_key.title}";
+    s.channel=s.pageName.split(':')[0];
+    s.prop1=s.pageName.split(':')[0]+":"+s.pageName.split(':')[1];
+    s.prop2="热门专题:商品详情";
+    s.prop3="热门专题:商品详情";
+    s.prop4="热门专题";
+    s.eVar3="专题详情页";
+    var s_code=s.t();
+    if(s_code)document.write(s_code);
+</script>
+<script>
+    // (function(){
+    //     var bp = document.createElement('script');
+    //     var curProtocol = window.location.protocol.split(':')[0];
+    //     if (curProtocol === 'https') {
+    //         bp.src = '//zz.bdstatic.com/linksubmit/push.js';
+    //     }
+    //     else {
+    //         bp.src = '//push.zhanzhang.baidu.com/push.js';
+    //     }
+    //     var s = document.getElementsByTagName("script")[0];
+    //     s.parentNode.insertBefore(bp, s);
+    // })();
+    (function(){
+        $('#detailHtml').find('img').loadsrc('gome-src');
+    })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,609 @@
+<!doctype html>
+<html>
+    #if($env=="live")
+        #set($staticdomain = "gomein.net.cn")
+        #set($gomedomain = "//www.gome.com.cn")
+        #set($wapgomedomain = "//m.gome.com.cn")
+    #else
+        #set($staticdomain = "gomein.net.cn")
+        #set($gomedomain = "//www.atguat.com.cn")
+        #set($wapgomedomain = "//m.atguat.com.cn")
+    #end
+    #if(${facetFilterName} != "爆品" && ${facetFilterName} != "新品")
+        #set($title="${rankYear}${facetFilterName}${rank_key.categoryName}排行榜_${facetFilterName}${rank_key.categoryName}大全-国美手机版")
+    #else
+        #set($title="${rankYear}${facetFilterName}${rank_key.categoryName}排行榜_${rank_key.categoryName}大全-国美手机版")
+    #end
+    #set($urlHead = "newtop10")
+    #set($urlEnd = "")
+<head>
+    <meta charset="UTF-8">
+    <title>$title</title>
+    <meta name="keywords" content="$keywords">
+    <meta name="description" content="$description">
+    <meta name="author" content="m.gome.com.cn">
+    <meta name="applicable-device" content="mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="${wapgomedomain}/${urlHead}/${pageType}-${id}${urlEnd}">
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="//js.gomein.net.cn/topics/mobile/css/waprank_base.css">
+    <link rel="stylesheet" type="text/css" href="//js.gomein.net.cn/topics/mobile/css/waprank_top.css">
+    <link rel="stylesheet" type="text/css" href="//css.gomein.net.cn/gmpro/1.0.0/seo/1.0.0/css/hot.css">
+</head>
+
+<body>
+    <!--start111-->
+    <!--导航模板-->
+    <nav class="nav">
+        <div class="toolbar">
+            <span class="nav_ico nav_back" data-icon='&#x0030' id="goback" data-goback="goback"></span>
+            <span class="nav_ico nav_home" data-icon='&#x0032'></span>
+            <span class="nav_ico nav_more" data-icon='&#x0031' id='nav_new_more'></span>
+            <h1 class="ellipsis">商品排行榜首页</h1>
+        </div>
+        <ul class="nav_ulist" id="nav_list" style="display:none">
+            <li>
+                <a id="nav_classify" href="javascript:;" data-icon='&#x0034'>分类</a>
+            </li>
+            <li>
+                <a id="nav_shopcar" href="javascript:;" data-icon='&#x0035'>购物车</a>
+            </li>
+            <li>
+                <a id="nav_mygome" href="javascript:;" data-icon='&#x0036'>我的国美</a>
+            </li>
+        </ul>
+    </nav>
+    <!--end-->
+    <!--start-->
+    <!--内容-->
+    <article class="content">
+        <!--类型排行榜-->
+        <!--tab切换-->
+        <section class="tab_list">
+            <div class="tab_nav">
+                <ul>
+                    <li onclick="window.location='${wapgomedomain}/${urlHead}/${rank_key.cid}${urlEnd}'">
+                        <a href="${wapgomedomain}/${urlHead}/${rank_key.cid}${urlEnd}"   data-cid="01">
+                            <em>全部</em>
+                        </a>
+                    </li>
+                    <li data-type="brand">
+                        <a href="javascript:;"  class="${brandtype}" data-cid="02">
+                            <em>品牌</em>
+                            <span class="data-icon" data-icon="&#x0043;"></span>
+                        </a>
+                    </li>
+                    <li data-type="function">
+                        <a href="javascript:;"  class="${othertype}" data-cid="03">
+                            <em>功能</em>
+                            <span class="data-icon" data-icon="&#x0043;"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${wapgomedomain}/${urlHead}/new-${rank_key.cid}${urlEnd}" class="${newtype}" data-cid="04">
+                            最新
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${wapgomedomain}/${urlHead}/hot-${rank_key.cid}${urlEnd}" class="${hottype}" data-cid="05">
+                            最热
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <input type="hidden" id="category_flag" value="${category_flag}"/>
+        </section>
+        <!--tab切换内容-->
+        <div class="tab_con filterbar_container">
+            <div></div>
+            <!--品牌-->
+            <div>
+                <!-- 下拉容器 -->
+                <div>
+                    <div class="drop_list_container">
+                        <div class="drop_list">
+                            #foreach($subItem in $brandList )
+                                #if($velocityCount==1)
+                                    <a href="${wapgomedomain}/${urlHead}/brand-${subItem.id}${urlEnd}" class="cur_sort">${subItem.value}<span class="data-icon"  data-icon="&#x0041"></span></a>
+                                #elseif($velocityCount==2)
+                                    <a href="${wapgomedomain}/${urlHead}/brand-${subItem.id}${urlEnd}" fenleiVal="01">${subItem.value}</a>
+                                #else
+                                    <a href="${wapgomedomain}/${urlHead}/brand-${subItem.id}${urlEnd}">${subItem.value}</a>
+                                #end
+                            #end
+                        </div>
+                    </div>
+                </div>
+                <div class="drop_list_container">
+                    <div class="drop_list">
+                        #foreach($subItem in $brandList )
+                            #if($velocityCount==1)
+                                <a href="${wapgomedomain}/${urlHead}/brand-${subItem.id}${urlEnd}" class="cur_sort">${subItem.value}<span class="data-icon"  data-icon="&#x0041"></span></a>
+                            #elseif($velocityCount==2)
+                                <a href="${wapgomedomain}/${urlHead}/brand-${subItem.id}${urlEnd}" fenleiVal="01">${subItem.value}</a>
+                            #else
+                                <a href="${wapgomedomain}/${urlHead}/brand-${subItem.id}${urlEnd}">${subItem.value}</a>
+                            #end
+                        #end
+                    </div>
+                </div>
+                <div class="alphe_lay"></div>
+<section class="plc_module hot_brand">
+                    <h2 class="title esp">${facetFilterName}${rank_key.categoryName}排行榜</h2>
+                    <ul class="prod_list brand_list">
+                        #foreach($productItem in $productList)
+						#if($velocityCount == $productList.size())
+							#set($pro_dl_class="dl nb")
+						#else
+							#set($pro_dl_class="dl")
+						#end
+                        <li class="show">
+                            <a href="//item.m.gome.com.cn/product-${productItem.pid}-${productItem.sid}.html">
+                            #if($velocityCount == 1)
+							 	<span class="arial first">$velocityCount</span>
+							#elseif($velocityCount == 2)
+								<span class="arial second">$velocityCount</span>
+							#elseif($velocityCount == 3)
+								<span class="arial third">$velocityCount</span>
+							#else
+								<span class="arial fourth">$velocityCount</span>
+							#end
+                                <div class="single_prod flexbox">
+                                    <div class="prod_img">
+                                        <img src="${productItem.iurl}">
+                                    </div>
+                                    <div class="flex1">
+                                        <h3 class="prod_title ellipsis_two">$velocityCount${productItem.pn}</h3>
+                                        <span class="prod_price arial">
+											#if(${productItem.price}&&${productItem.price}!="")
+												&#165;$number.format('0.00',${productItem.price})
+											#else
+												暂无报价
+											#end
+										</span>
+                                        <div class="judge rank_fr">
+                                            <div class="star clearfix">
+                                                <span class="show rank_fr"></span>
+                                                #if(${productItem.evaluateNum} > 0)
+                                                    <span class="show rank_fr"></span>
+                                                    #if(${productItem.evaluateNum} > 1)
+                                                        <span class="show rank_fr"></span>
+                                                        #if(${productItem.evaluateNum} > 2)
+                                                            <span class="show rank_fr"></span>
+                                                            #if(${productItem.evaluateNum} > 3)
+                                                                <span class="show rank_fr"></span>
+                                                                #if(${productItem.evaluateNum} > 4)
+                                                                    <span class="show rank_fr"></span>
+                                                                #end
+                                                            #end
+                                                        #end
+                                                    #end
+                                                #end  </div>
+                                            <i>评论：${productItem.evaluateCount}条${productItem.evaluateNum}</i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                       #end
+                    </ul>
+                    <button class="plc_btn view_more">查看更多</button>
+                </section>
+                <!--相关产品排行榜-->
+                <section class="plc_module">
+                    <h2 class="title">相关产品排行榜</h2>
+                    <ul class="evale_list">
+                        #foreach($item in $likeRankList)
+                            <li><a href="${wapgomedomain}/${item.cid}" class="ellipsis">${item.name}排行榜</a></li>
+                        #end
+                    </ul>
+                </section>
+                <!--所有排行榜分类-->
+                <section class="plc_module last_module">
+                    <h2 class="title">所有排行榜分类</h2>
+                    <ul class="ulist">
+                        #foreach($item in $allRankList)
+                            <li class="category">
+                                <div class="type flexbox">
+                                    <span class="words flex1">${item.parentName}</span>
+                                    <i data-icon='&#x0030' class="arr_down"></i>
+                                </div>
+                                <ul class="plc_module_list words_list">
+                                    #foreach($subItem in $item.subList)
+                                        <li>
+                                            <a href="${wapgomedomain}/${urlHead}/${subItem.cid}${urlEnd}">${subItem.categoryName}</a>
+                                        </li>
+                                    #end
+                                </ul>
+                            </li>
+                        #end
+                    </ul>
+                </section>
+            </div>
+            <!--功能-->
+            <div style="display:none">
+                <!-- 下拉容器 -->
+                <div class="drop_list_container">
+                    <div class="drop_list">
+                        #foreach($subItem in $otherList )
+                            #if($velocityCount==1)
+                                <a href="${wapgomedomain}/${urlHead}/other-${subItem.id}${urlEnd}" class="cur_sort">${subItem.value}<span class="data-icon"  data-icon="&#x0041"></span></a>
+                            #elseif($velocityCount==2)
+                                <a href="${wapgomedomain}/${urlHead}/other-${subItem.id}${urlEnd}" fenleiVal="01">${subItem.value}</a>
+                            #else
+                                <a href="${wapgomedomain}/${urlHead}/other-${subItem.id}${urlEnd}">${subItem.value}</a>
+                            #end
+                        #end
+                    </div>
+                </div>
+                <div class="alphe_lay"></div>
+                <section class="plc_module hot_brand">
+                    <h2 class="title esp">${facetFilterName}${rank_key.categoryName}排行榜</h2>
+                    <ul class="prod_list brand_list">
+                        #foreach($productItem in $productList)
+                            #if($velocityCount == $productList.size())
+                                #set($pro_dl_class="dl nb")
+                            #else
+                                #set($pro_dl_class="dl")
+                            #end
+
+                            <li class="show">
+                                <a href="//item.m.gome.com.cn/product-${productItem.pid}-${productItem.sid}.html">
+                                    #if($velocityCount == 1)
+                                        <span class="arial first">$velocityCount</span>
+                                    #elseif($velocityCount == 2)
+                                        <span class="arial second">$velocityCount</span>
+                                    #elseif($velocityCount == 3)
+                                        <span class="arial third">$velocityCount</span>
+                                    #else
+                                        <span class="arial fourth">$velocityCount</span>
+                                    #end
+                                    <div class="single_prod flexbox">
+                                        <div class="prod_img">
+                                            <img src="${productItem.iurl}">
+                                        </div>
+                                        <div class="flex1">
+                                            <h3 class="prod_title ellipsis_two">$velocityCount${productItem.pn}</h3>
+                                            <span class="prod_price arial">
+                                                #if(${productItem.price}&&${productItem.price}!="")
+												&#165;$number.format('0.00',${productItem.price})
+                                                #else
+                                                    暂无报价
+                                                #end
+                                            </span>
+                                            <div class="judge rank_fr">
+                                                <div class="star clearfix">
+                                                    <span class="show rank_fr"></span>
+                                                    #if(${productItem.evaluateNum} > 0)
+                                                        <span class="show rank_fr"></span>
+                                                        #if(${productItem.evaluateNum} > 1)
+                                                            <span class="show rank_fr"></span>
+                                                            #if(${productItem.evaluateNum} > 2)
+                                                                <span class="show rank_fr"></span>
+                                                                #if(${productItem.evaluateNum} > 3)
+                                                                    <span class="show rank_fr"></span>
+                                                                    #if(${productItem.evaluateNum} > 4)
+                                                                        <span class="show rank_fr"></span>
+                                                                    #end
+                                                                #end
+                                                            #end
+                                                        #end
+                                                    #end  </div>
+                                                <i>评论：${productItem.evaluateCount}条</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        #end
+                    </ul>
+                    <button class="plc_btn view_more">查看更多</button>
+                </section>
+                <!--相关产品排行榜-->
+                <section class="plc_module">
+                    <h2 class="title">相关产品排行榜</h2>
+                    <ul class="evale_list">
+                        #foreach($item in $likeRankList)
+                            <li><a href="${wapgomedomain}/${item.cid}" class="ellipsis">${item.name}排行榜</a></li>
+                        #end
+                    </ul>
+                </section>
+                <!--所有排行榜分类-->
+                <section class="plc_module last_module">
+                    <h2 class="title">所有排行榜分类</h2>
+                    <ul class="ulist">
+                        #foreach($item in $allRankList)
+                            <li class="category">
+                                <div class="type flexbox">
+                                    <span class="words flex1">${item.parentName}</span>
+                                    <i data-icon='&#x0030' class="arr_down"></i>
+                                </div>
+                                <ul class="plc_module_list words_list">
+                                    #foreach($subItem in $item.subList)
+                                        <li>
+                                            <a href="${wapgomedomain}/${urlHead}/${subItem.cid}${urlEnd}">${subItem.categoryName}</a>
+                                        </li>
+                                    #end
+                                </ul>
+                            </li>
+                        #end
+                    </ul>
+                </section>
+            </div>
+            <!--最新-->
+            <div style="display: none">
+               <div class="alphe_lay"></div>
+                <section class="plc_module hot_brand">
+                    <h2 class="title esp">${facetFilterName}${rank_key.categoryName}排行榜</h2>
+                    <ul class="prod_list brand_list">
+                        #foreach($productItem in $productList)
+                            #if($velocityCount == $productList.size())
+                                #set($pro_dl_class="dl nb")
+                            #else
+                                #set($pro_dl_class="dl")
+                            #end
+
+                            <li class="show">
+                                <a href="//item.m.gome.com.cn/product-${productItem.pid}-${productItem.sid}.html">
+                                    #if($velocityCount == 1)
+                                        <span class="arial first">$velocityCount</span>
+                                    #elseif($velocityCount == 2)
+                                        <span class="arial second">$velocityCount</span>
+                                    #elseif($velocityCount == 3)
+                                        <span class="arial third">$velocityCount</span>
+                                    #else
+                                        <span class="arial fourth">$velocityCount</span>
+                                    #end
+                                    <div class="single_prod flexbox">
+                                        <div class="prod_img">
+                                            <img src="${productItem.iurl}">
+                                        </div>
+                                        <div class="flex1">
+                                            <h3 class="prod_title ellipsis_two">$velocityCount${productItem.pn}</h3>
+                                            <span class="prod_price arial">
+                                                #if(${productItem.price}&&${productItem.price}!="")
+												&#165;$number.format('0.00',${productItem.price})
+                                                #else
+                                                    暂无报价
+                                                #end
+                                            </span>
+                                            <div class="judge rank_fr">
+                                                <div class="star clearfix">
+                                                    <span class="show rank_fr"></span>
+                                                    #if(${productItem.evaluateNum} > 0)
+                                                        <span class="show rank_fr"></span>
+                                                        #if(${productItem.evaluateNum} > 1)
+                                                            <span class="show rank_fr"></span>
+                                                            #if(${productItem.evaluateNum} > 2)
+                                                                <span class="show rank_fr"></span>
+                                                                #if(${productItem.evaluateNum} > 3)
+                                                                    <span class="show rank_fr"></span>
+                                                                    #if(${productItem.evaluateNum} > 4)
+                                                                        <span class="show rank_fr"></span>
+                                                                    #end
+                                                                #end
+                                                            #end
+                                                        #end
+                                                    #end  </div>
+                                                <i>评论：${productItem.evaluateCount}条</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        #end
+                    </ul>
+                    <button class="plc_btn view_more">查看更多</button>
+                </section>
+                <!--相关产品排行榜-->
+                <section class="plc_module">
+                    <h2 class="title">相关产品排行榜</h2>
+                    <ul class="evale_list">
+                        #foreach($item in $likeRankList)
+                            <li><a href="${wapgomedomain}/${item.cid}" class="ellipsis">${item.name}排行榜</a></li>
+                        #end
+                    </ul>
+                </section>
+                <!--所有排行榜分类-->
+                <section class="plc_module last_module">
+                    <h2 class="title">所有排行榜分类</h2>
+                    <ul class="ulist">
+                        #foreach($item in $allRankList)
+                            <li class="category">
+                                <div class="type flexbox">
+                                    <span class="words flex1">${item.parentName}</span>
+                                    <i data-icon='&#x0030' class="arr_down"></i>
+                                </div>
+                                <ul class="plc_module_list words_list">
+                                    #foreach($subItem in $item.subList)
+                                        <li>
+                                            <a href="${wapgomedomain}/${urlHead}/${subItem.cid}${urlEnd}">${subItem.categoryName}</a>
+                                        </li>
+                                    #end
+                                </ul>
+                            </li>
+                        #end
+                    </ul>
+                </section>
+            </div>
+            <!--最热-->
+            <div style="display: none">
+               <div class="alphe_lay"></div>
+                <section class="plc_module hot_brand">
+                    <h2 class="title esp">${facetFilterName}${rank_key.categoryName}排行榜</h2>
+                    <ul class="prod_list brand_list">
+                        #foreach($productItem in $productList)
+                            #if($velocityCount == $productList.size())
+                                #set($pro_dl_class="dl nb")
+                            #else
+                                #set($pro_dl_class="dl")
+                            #end
+
+                            <li class="show">
+                                <a href="//item.m.gome.com.cn/product-${productItem.pid}-${productItem.sid}.html">
+                                    #if($velocityCount == 1)
+                                        <span class="arial first">$velocityCount</span>
+                                    #elseif($velocityCount == 2)
+                                        <span class="arial second">$velocityCount</span>
+                                    #elseif($velocityCount == 3)
+                                        <span class="arial third">$velocityCount</span>
+                                    #else
+                                        <span class="arial fourth">$velocityCount</span>
+                                    #end
+                                    <div class="single_prod flexbox">
+                                        <div class="prod_img">
+                                            <img src="${productItem.iurl}">
+                                        </div>
+                                        <div class="flex1">
+                                            <h3 class="prod_title ellipsis_two">$velocityCount${productItem.pn}</h3>
+                                            <span class="prod_price arial">
+                                                #if(${productItem.price}&&${productItem.price}!="")
+												&#165;$number.format('0.00',${productItem.price})
+                                                #else
+                                                    暂无报价
+                                                #end
+                                            </span>
+                                            <div class="judge rank_fr">
+                                                <div class="star clearfix">
+                                                    <span class="show rank_fr"></span>
+                                                    #if(${productItem.evaluateNum} > 0)
+                                                        <span class="show rank_fr"></span>
+                                                        #if(${productItem.evaluateNum} > 1)
+                                                            <span class="show rank_fr"></span>
+                                                            #if(${productItem.evaluateNum} > 2)
+                                                                <span class="show rank_fr"></span>
+                                                                #if(${productItem.evaluateNum} > 3)
+                                                                    <span class="show rank_fr"></span>
+                                                                    #if(${productItem.evaluateNum} > 4)
+                                                                        <span class="show rank_fr"></span>
+                                                                    #end
+                                                                #end
+                                                            #end
+                                                        #end
+                                                    #end  </div>
+                                                <i>评论：${productItem.evaluateCount}条</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        #end
+                    </ul>
+                    <button class="plc_btn view_more">查看更多</button>
+                </section>
+                <!--相关产品排行榜-->
+                <section class="plc_module">
+                    <h2 class="title">相关产品排行榜</h2>
+                    <ul class="evale_list">
+                        #foreach($item in $likeRankList)
+                            <li><a href="${wapgomedomain}/${item.cid}" class="ellipsis">${item.name}排行榜</a></li>
+                        #end
+                    </ul>
+                </section>
+                <!--所有排行榜分类-->
+                <section class="plc_module last_module">
+                    <h2 class="title">所有排行榜分类</h2>
+                    <ul class="ulist">
+                        #foreach($item in $allRankList)
+                            <li class="category">
+                                <div class="type flexbox">
+                                    <span class="words flex1">${item.parentName}</span>
+                                    <i data-icon='&#x0030' class="arr_down"></i>
+                                </div>
+                                <ul class="plc_module_list words_list">
+                                    #foreach($subItem in $item.subList)
+                                        <li>
+                                            <a href="${wapgomedomain}/${urlHead}/${subItem.cid}${urlEnd}">${subItem.categoryName}</a>
+                                        </li>
+                                    #end
+                                </ul>
+                            </li>
+                        #end
+                    </ul>
+                </section>
+        </div>
+        <!--面包线-->
+        <section class="plc_line_cont">
+            <div class="guide flexbox">
+                <div class="gome_bg"><img src="//js.gomein.net.cn/topics/mobile/images/waprank_gome_bg.png" alt=""></div>
+                <div class="stage none">
+                    <a href="//m.gome.com.cn">首页</a>
+                </div>
+                <div class="level iconRotate180 icon" data-icon="&#x0030"></div>
+                <div class="stage none">
+                    <a href="javascript:;">商品排行榜</a>
+                </div>
+                <div class="level iconRotate180 icon" data-icon="&#x0030"></div>
+                <div class="stage ellipsis">${facetFilterName}${rank_key.categoryName}排行榜</div>
+            </div>
+        </section>
+        <!-- 返回顶部 -->
+        <span id="gotop" data-gotop="true" data-gotop-type="gotop2" data-icon="&#x2020">顶部</span>
+    </article>
+    <!--end-->
+    <!--start-->
+    <!--嵌入底部模板-->
+    <footer class='plc_footer' id='plc_footer'>
+        <div class="usr_bar">
+            <a href="https://m.gome.com.cn/login.html" target="_blank" rel="nofollow"><span>登录</span></a>
+            <a href="https://m.gome.com.cn/registered.html" target="_blank" rel="nofollow"><span>注册</span></a>
+            <a href="m.gome.com.cn/more.html"><span class="sp">更多</span></a>
+            <a href="https://m.gome.com.cn/login.html?return_url=ZmVlZF9iYWNrLmh0bWw=" target=" _blank" rel="nofollow"><span>反馈</span></a>
+        </div>
+        <div class="version">
+            <span class="touch">触屏版</span>
+            <a href="//www.gome.com.cn/?jump=wtp" target="_blank" rel="nofollow">
+                <span>电脑版</span>
+            </a>
+            <span id="appdownload">客户端</span>
+        </div>
+        <div class="gome_info">
+            <p>copyright &copy; 2000-2015 gome.com.cn</p>
+            <p>客服热线：4008-708-708</p>
+        </div>
+    </footer>
+    <!--end-->
+    <script type="text/javascript " src='//js.gomein.net.cn/topics/mobile/js/waprank_zepto.min.js'></script>
+    <script type="text/javascript " src="//js.gomein.net.cn/topics/mobile/js/waprank_zepto.goback.js"></script>
+    <script type="text/javascript " src="//js.gomein.net.cn/topics/mobile/js/waprank_zepto.gotop.js"></script>
+    <script type="text/javascript " src="//js.gomein.net.cn/topics/mobile/js/waprank_zepto.lazyload.js"></script>
+
+    <script type="text/javascript " src='//js.gomein.net.cn/topics/mobile/js/waprank_nav.js'></script>
+    <script type="text/javascript " src='//js.gomein.net.cn/topics/mobile/js/waprank_tab.js'></script>
+    <script type="text/javascript " src="//js.gomein.net.cn/topics/mobile/js/waprank_top.js "></script>
+    <script>
+        $("#nav_back ").goback();
+        keywords('.category>.type.flexbox');
+        loadMore(4, 0, 4, '.sale .view_more');
+        loadMore(3, 0, 10, '.choose .view_more');
+        loadMore(10, 0, 10, '.hot_brand .view_more');
+    </script>
+    <script type="text/javascript" src="//js.gomein.net.cn/plus/js/public/omniture/s_code.js"></script>
+    <script type="text/javascript" src="//js.gomein.net.cn/sitemonitor/wap.js"></script>
+    <script type="text/javascript" language="javascript">
+		s.pageName="商品排行榜:筛选页:${facetFilterName}${rank_key.categoryName}排行榜";
+		s.channel="排行榜";
+		s.prop1="商品排行榜:筛选页:${facetFilterName}${rank_key.categoryName}排行榜";
+		s.prop2="商品排行榜:筛选页:${facetFilterName}${rank_key.categoryName}排行榜";
+		s.prop3="商品排行榜:筛选页:${facetFilterName}${rank_key.categoryName}排行榜";
+		s.prop4="排行榜";
+		var s_code=s.t();
+		if(s_code)document.write(s_code);
+    </script>
+<!-- 
+    <script>
+      (function(){
+       var bp = document.createElement('script');
+       bp.src = '//push.zhanzhang.baidu.com/push.js';
+       var s = document.getElementsByTagName("script")[0];
+       s.parentNode.insertBefore(bp, s);
+       })();
+    </script>
+-->
+
+</body>
+
+</html>

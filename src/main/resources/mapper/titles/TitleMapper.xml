@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gome.stage.mapper.TitleMapper" >
+  <resultMap id="BaseResultMap" type="com.gome.stage.entity.Title" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PATHS" property="paths" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="GOODS_ID" property="goodsId" jdbcType="VARCHAR" />
+    <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="PUBLIC_STAT" property="publicStat" jdbcType="CHAR" />
+    <result column="CHECK_STAT" property="checkStat" jdbcType="CHAR" />
+    <result column="MODIFIER" property="modifier" jdbcType="VARCHAR" />
+    <result column="EDIT_STAT" property="editStat" jdbcType="CHAR" />
+    <result column="SITE" property="site" jdbcType="VARCHAR" />
+    <result column="INDEX_STAT" property="indexStat" jdbcType="CHAR" />
+    <result column="SKU_ID" property="skuId" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="RMKeywords2" type="com.gome.stage.entity.Keywords">
+    <result property="names" column="NAMES"/>
+    <result property="url" column="URL"/>
+  </resultMap>
+
+
+  <resultMap id="ResultMapWithBLOBs" type="com.gome.stage.entity.Title" extends="BaseResultMap" >
+    <result column="SOURCES" property="sources" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PATHS, TITLE, GOODS_ID, GOODS_NAME, CREATOR, CREATE_TIME, UPDATE_TIME, PUBLIC_STAT, 
+    CHECK_STAT, MODIFIER, EDIT_STAT, SITE, INDEX_STAT, SKU_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    SOURCES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_titles
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_titles
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gome.stage.entity.Title" >
+    insert into t_titles (ID, PATHS, TITLE, 
+      GOODS_ID, GOODS_NAME, CREATOR, 
+      CREATE_TIME, UPDATE_TIME, PUBLIC_STAT, 
+      CHECK_STAT, MODIFIER, EDIT_STAT, 
+      SITE, INDEX_STAT, SKU_ID, 
+      SOURCES)
+    values (#{id,jdbcType=INTEGER}, #{paths,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{publicStat,jdbcType=CHAR}, 
+      #{checkStat,jdbcType=CHAR}, #{modifier,jdbcType=VARCHAR}, #{editStat,jdbcType=CHAR}, 
+      #{site,jdbcType=VARCHAR}, #{indexStat,jdbcType=CHAR}, #{skuId,jdbcType=VARCHAR}, 
+      #{sources,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gome.stage.entity.Title" >
+    insert into t_titles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="paths != null" >
+        PATHS,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID,
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="publicStat != null" >
+        PUBLIC_STAT,
+      </if>
+      <if test="checkStat != null" >
+        CHECK_STAT,
+      </if>
+      <if test="modifier != null" >
+        MODIFIER,
+      </if>
+      <if test="editStat != null" >
+        EDIT_STAT,
+      </if>
+      <if test="site != null" >
+        SITE,
+      </if>
+      <if test="indexStat != null" >
+        INDEX_STAT,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="sources != null" >
+        SOURCES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="paths != null" >
+        #{paths,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publicStat != null" >
+        #{publicStat,jdbcType=CHAR},
+      </if>
+      <if test="checkStat != null" >
+        #{checkStat,jdbcType=CHAR},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="editStat != null" >
+        #{editStat,jdbcType=CHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="indexStat != null" >
+        #{indexStat,jdbcType=CHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="sources != null" >
+        #{sources,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gome.stage.entity.Title" >
+    update t_titles
+    <set >
+      <if test="paths != null" >
+        PATHS = #{paths,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publicStat != null" >
+        PUBLIC_STAT = #{publicStat,jdbcType=CHAR},
+      </if>
+      <if test="checkStat != null" >
+        CHECK_STAT = #{checkStat,jdbcType=CHAR},
+      </if>
+      <if test="modifier != null" >
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="editStat != null" >
+        EDIT_STAT = #{editStat,jdbcType=CHAR},
+      </if>
+      <if test="site != null" >
+        SITE = #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="indexStat != null" >
+        INDEX_STAT = #{indexStat,jdbcType=CHAR},
+      </if>
+      <if test="skuId != null" >
+        SKU_ID = #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="sources != null" >
+        SOURCES = #{sources,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gome.stage.entity.Title" >
+    update t_titles
+    set PATHS = #{paths,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PUBLIC_STAT = #{publicStat,jdbcType=CHAR},
+      CHECK_STAT = #{checkStat,jdbcType=CHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      EDIT_STAT = #{editStat,jdbcType=CHAR},
+      SITE = #{site,jdbcType=VARCHAR},
+      INDEX_STAT = #{indexStat,jdbcType=CHAR},
+      SKU_ID = #{skuId,jdbcType=VARCHAR},
+      SOURCES = #{sources,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gome.stage.entity.Title" >
+    update t_titles
+    set PATHS = #{paths,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PUBLIC_STAT = #{publicStat,jdbcType=CHAR},
+      CHECK_STAT = #{checkStat,jdbcType=CHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      EDIT_STAT = #{editStat,jdbcType=CHAR},
+      SITE = #{site,jdbcType=VARCHAR},
+      INDEX_STAT = #{indexStat,jdbcType=CHAR},
+      SKU_ID = #{skuId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="getRelatedGoodIdByTitleId" resultType="java.lang.String">
+		SELECT goods_id FROM t_title_goods WHERE title_id = #{titleId}
+  </select>
+
+  <select id="getGoodIdByTitleId" resultType="java.lang.String">
+		SELECT GOODS_ID FROM t_titles WHERE id = #{titleId}
+  </select>
+
+ <!-- SELECT GOODS_ID FROM t_titles WHERE ID = #{titleId}-->
+
+  <!-- 根据专题id获取热门链接的数据-->
+  <select id="findRMLinkByTitleId"  resultMap="RMKeywords2">
+	      select t1.NAMES as NAMES,t1.URL  as URL from t_keywords t1 left join t_keywords_rel t2
+          on t1.ID = t2.KEYWORDS where t1.TYPES = 3 and t2.TITLE_ID = #{titleId}
+  </select>
+
+
+  <!-- 根据专题id获取热门链接的数据-->
+  <select id="findTagByTitleId" resultType="java.lang.String">
+	      select t1.NAMES as NAMES from t_keywords t1 left join t_keywords_rel t2
+          on t1.ID = t2.KEYWORDS where t1.TYPES = 2 and t2.TITLE_ID = #{titleId}
+     </select>
+
+  <!-- 专题大家都在看 取最新的十条数据 -->
+  <select id="findRecentZhuanti" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM t_titles
+    WHERE PUBLIC_STAT='Y' AND INDEX_STAT='Y' AND SITE='gome'
+    ORDER BY UPDATE_TIME desc limit 0,10
+
+  </select>
+
+  <!-- 根据标签名称去匹配专题 -->
+  <select id="findZhuanTiByTagName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM t_titles
+    WHERE upper(TITLE) like CONCAT('%',upper(trim(#{tagName})),'%')
+    ORDER BY UPDATE_TIME desc
+
+  </select>
+
+  <!-- 根据标签名称去匹配专题 -->
+  <!--SELECT t1.* from t_titles t1 left join t_keywords_rel t2 on t1.ID = t2.TITLE_ID left join t_keywords t3 on t2.KEYWORDS = t3.ID
+
+  where t3.`ID` =#{tagId} AND t1.publicStat='Y' AND t1.indexStat='Y' AND t1.SITE='gome'
+
+  ORDER BY t1.UPDATE_TIME desc-->
+  <select id="findZhuanTiByTagId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+    SELECT t3.* from t_keywords t1 LEFT JOIN t_keywords_rel t2 on t1.ID=t2.KEYWORDS LEFT JOIN t_titles t3 on t3.ID = t2.TITLE_ID
+
+    where t1.`ID` =#{tagId}  AND t3.PUBLIC_STAT='Y' AND t3.INDEX_STAT='Y' AND t3.SITE='gome'
+
+    ORDER BY t3.UPDATE_TIME desc
+
+  </select>
+
+
+  <select id="findZhuanTiByTitlePath" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM t_titles
+    where PATHS = #{titlePath} AND PUBLIC_STAT='Y' AND INDEX_STAT='Y' AND SITE='gome'
+
+  </select>
+
+
+
+
+
+
+
+</mapper>

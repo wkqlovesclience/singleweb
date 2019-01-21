@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    #set($t_ids = ${title_key.id} / 1000)
+    #set($domainsite = '//www.gome.com.cn')
+    #set($topicsite = '//www.gome.com.cn/')
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <title>【${tag_key.names}产品大全】${tag_key.names}相关热门产品大全 -国美</title>
+    <meta name="keywords" content="${tag_key.names}大全,${tag_key.names}产品大全" />
+    <meta name="description" content="国美(Gome.com.cn)为您提供${tag_key.names}相关产品大全，在这里您可以了解更多关于${tag_key.names}的相关信息。" />
+    <meta name="applicable-device" content="pc">
+    <!--# include virtual="/mblock/topic_gome_css_new.html" --> <!-- 引入CSS文件 -->
+    <link rel="stylesheet" href="<!--# include virtual='/n/common/default/style.html'-->">
+<link rel="shortcut icon" href="//app.gomein.net.cn/favicon.ico" type="image/x-icon">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fcb189c645a553beedb0750841344517";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <style type="text/css">
+        a {
+    color: #333;
+    cursor: pointer;
+    outline: 0 none;
+    text-decoration: none;
+}
+a:hover {
+    color: #c00;
+    text-decoration: underline;
+}
+.link {
+    color: #06c;
+}
+a.link:hover {
+    color: #06c;
+    text-decoration: underline;
+}
+   </style>
+
+</head>
+<body class="w990">
+    <!-- 国美公共头 start -->
+   <!--# include virtual="/n/common/default/head.html"-->
+    <!-- 国美公共头 end -->
+     <!--# include virtual="/n/common/global/global.html"-->
+    <script src="<!--# include virtual='/n/common/default/script.html'-->"></script>
+    <!--# include virtual="/mblock/topic_gome_js_new.html" --> <!-- 引入JS文件 -->
+    <script src="//js.gomein.net.cn/??/eccms/js/topics_js/100/4094485984.js,/f2ejs/g/jsCssImport.min.js" type="text/javascript"></script>
+    <div class="main clearfix">
+        <div class="crums"><a href="${domainsite}/" title="首页">首页</a><em>&gt;</em><a href="${topicsite}/topic/" title="商品专题">商品专题</a><em>&gt;</em>${tag_key.names}专题列表</div>
+        <div class="left-main">
+            <div class="p-title">
+                <h1 class="name">${tag_key.names}标签列表</h1>
+            </div>
+            <div class="p-main">    
+                <div class="p-bd">
+                    <div class="shop-more">
+                        <!-- 专题标签列表模块  begin -->
+                        <!--<coo8publishblock name="topic_tags_list" type="0"/>-->
+                        <!-- 专题标签列表模块   end -->
+                        <ul id="js-more-list">
+                            #foreach($item in $title_list)
+                                #set($curClass='')
+                                #if($velocityCount%2 == 0)
+                                    #set($curClass='li-bg')
+                                #end
+                                #if($velocityCount%12 == 1)
+                                <li>
+                                #end
+                                <span><a title="${item.title}" href="${topicsite}${item.paths}/" target="_blank">${item.title}</a></span>
+                                #if($velocityCount%12 == 0 || ($velocityCount == $title_list.size()))
+                                </li>
+                                #end
+                            #end
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="right-aside">
+            <div class="column">
+                <div class="c-hd"><h2 class="name">家用电器热销排行榜</h2></div>
+                  <div class="c-bd" style="padding:0">
+                    <div class="rxpltab">
+                        <div class="tabs"><a href="javascript:void(0)" class="cur">平板电视</a><a href="javascript:void(0)" class="">空调</a><a href="javascript:void(0)" class="last">冰箱</a></div>
+                        <div class="tab-more">
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                        </div>
+                        <div class="cons">
+                            <!-- 家用电器热销排行模块  begin -->
+                            <!--# include virtual="/sblock/household_appliance.html" -->
+                            <!-- 家用电器热销排行模块  end -->
+                        </div>
+                    </div>               
+                </div>
+            </div>
+        
+            <div class="column">
+                <div class="c-hd"><h2 class="name">3C数码热销排行榜</h2></div>
+                  <div class="c-bd" style="padding:0">
+                    <div class="rxpltab">
+                        <div class="tabs"><a href="javascript:void(0)" class="cur">手机</a><a href="javascript:void(0)" class="">数码相机</a><a href="javascript:void(0)" class="last">电脑</a></div>
+                        <div class="tab-more">
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                        </div>
+                        <div class="cons">
+                            <!-- 3C数码热销排行模块  begin -->
+                            <!--# include virtual="/sblock/3c_digital.html" -->
+                            <!-- 3C数码热销排行模块  end -->
+                        </div>
+                    </div>               
+                </div>
+            </div>
+        
+            <div class="column">
+                <div class="c-hd"><h2 class="name">汽车/户外/家居 – 畅销排行榜</h2></div>
+                  <div class="c-bd" style="padding:0">
+                    <div class="rxpltab">
+                        <div class="tabs"><a href="javascript:void(0)" class="cur">汽车用品</a><a href="javascript:void(0)" class="">户外</a><a href="javascript:void(0)" class="last">精品家居</a></div>
+                        <div class="tab-more">
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                            <a title="更多" target="_blank" href="javascript:void(0)" style="display: none; ">更多<em>&gt;</em></a>
+                        </div>
+                        <div class="cons">
+                            <!-- 家居/服饰/母婴热销排行模块  begin -->
+                            <!--# include virtual="/sblock/household_dress_mom.html" -->
+                            <!-- 家居/服饰/母婴排行模块  end -->
+                        </div>
+                    </div>               
+                </div>
+            </div>
+            
+        </div>    
+        <script type="text/javascript">
+        //热门品类排行滑过效果
+        $(".js-plrx li").bind("mouseover",function(){
+            $(this).addClass("cur").siblings().removeClass("cur")
+        })
+        /* 热销品类切换 */
+        $(".rxpltab").each(function(){
+            var swCon = $(this).find(".plrx");
+            //var swMore = $(this).find(".tab-more a");
+            var triger = $(this).find(".tabs a");
+            swCon.eq(0).show();
+            //swMore.eq(0).show();
+            triger.hover(function(){
+                var index = triger.index(this);
+                $(this).addClass("cur").siblings().removeClass("cur");
+                swCon.eq(index).show().siblings().hide();
+                //swMore.eq(index).show().siblings().hide();
+            },function(){})
+        })
+        </script>
+    </div>
+
+    <!-- 国美公共页脚 start -->
+   <!--# include virtual="/n/common/default/foot.html"-->
+    <!-- 国美公共页脚 end -->
+<script type="text/javascript" src="//js.gomein.net.cn/js/gz/adobe/s_code-gz.js"></script>
+    <script language="javascript">
+       s.pageName="热门专题:${tag_key.names}相关热门产品大全";
+       s.channel=s.pageName.split(':')[0];
+       s.prop1=s.pageName.split(':')[0]+":"+s.pageName.split(':')[1];
+       s.prop4="热门专题";
+       s.eVar3="专题相关热门产品大全";
+       var s_code=s.t();
+       if(s_code)document.write(s_code);
+    </script>
+##<script>
+##(function(){
+##    var bp = document.createElement('script');
+##    bp.src = '//push.zhanzhang.baidu.com/push.js';
+##    var s = document.getElementsByTagName("script")[0];
+##    s.parentNode.insertBefore(bp, s);
+##})();
+##</script>
+
+</body>
+</html>

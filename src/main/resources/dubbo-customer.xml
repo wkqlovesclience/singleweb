@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+  <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+  <dubbo:application name="single-web" />
+  <!-- 关闭所有服务的启动时检查，check=false，总是会返回引用，当服务恢复时，能自动连上。 -->
+  <dubbo:consumer check="false" timeout="5000" />
+  <!-- 使用multicast广播注册中心暴露发现服务地址 -->
+  <dubbo:registry id="zookeeper" protocol="zookeeper" address="${gome.stage.dubbo.zookeeper.address}" />
+  <dubbo:registry id="seoZookeeperAddress" protocol="zookeeper" address="${seo.productwords.zookeeper.address}" />
+  <!-- <dubbo:registry id="searchZookeeperAddress" protocol="zookeeper" address="10.58.53.217:2191,10.58.53.218:2191,10.58.188.146:2191" /> -->
+  <dubbo:registry id="searchZookeeperAddress" protocol="zookeeper" address="${gome.search.zookeeper.address}" />
+
+  <!-- 排行榜接口 注册中心 -->
+  <dubbo:registry id="rankZookeeperAddress" protocol="zookeeper" address="${dubbo.seo.rankzookeeper.address}" />
+
+  <!-- 线上接口 -->
+<!--  <dubbo:registry id="zookeeper" protocol="zookeeper" address="10.58.22.191:2181,10.58.22.192:2181,10.58.22.193:2181,10.58.50.149:2181,10.58.50.150:2181,10.58.53.217:2181,10.58.53.218:2181,10.58.188.147:2181,10.58.188.146:2181,10.58.188.148:2181 " />
+  <dubbo:registry id="seoZookeeperAddress" protocol="zookeeper" address="10.58.22.191:2181,10.58.22.192:2181,10.58.22.193:2181,10.58.50.149:2181,10.58.50.150:2181" />
+  <dubbo:registry id="searchZookeeperAddress" protocol="zookeeper" address="10.58.53.217:2191,10.58.53.218:2191,10.58.188.146:2191"  />
+  <dubbo:registry id="rankZookeeperAddress" protocol="zookeeper" address="10.58.51.57:2181,10.58.51.58:2181,10.58.51.59:2181" />-->
+
+  <dubbo:reference id="specService" interface="com.gome.stage.interfaces.specs.ISpecService" registry="zookeeper" loadbalance="random" group="item" timeout="10000"/>
+  <dubbo:reference id="templateService" interface="com.gome.stage.interfaces.whale.ITemplateService"
+                   loadbalance="random" group="whale" timeout="10000" registry="zookeeper"/>
+  <dubbo:reference id="prodDetailService" interface="com.gome.frontSe.interfaces.IProdDetailService" loadbalance="random"   registry="zookeeper"/>
+  <dubbo:reference id="merchantService" interface="com.gome.stage.interfaces.whale.IMerchantService" loadbalance="random" group="whale"  registry="zookeeper"/>
+  <dubbo:reference id="shopService" interface="com.gome.stage.interfaces.item.IShopService" loadbalance="random" group="item"  registry="zookeeper"/>
+  <dubbo:reference id="captchaFacade" interface="com.gome.captcha.facade.ICaptchaFacade" loadbalance="random" registry="zookeeper"/>
+
+  <dubbo:reference id="gomeProductService" interface="com.gome.stage.interfaces.item.IGomeProductService" timeout="50000" retries="2" registry="seoZookeeperAddress" group="item" check="false" />
+  <dubbo:reference id="goodsAppraiseQueryService" interface="com.gome.qiantai.service.IGoodsAppraiseQueryService" timeout="50000" retries="2" registry="seoZookeeperAddress"  check="false" />
+  <dubbo:reference id="priceService" interface="com.gome.stage.interfaces.item.IPriceService" timeout="50000" retries="2" registry="seoZookeeperAddress" group="item" check="false" />
+  <dubbo:reference id="productInfoService" interface="com.gome.stage.interfaces.whale.IProductInfoService" timeout="50000" retries="2" registry="seoZookeeperAddress"  check="false" />
+  <dubbo:reference id="itemProductInfoService" interface="com.gome.stage.interfaces.item.IProductInfoService" timeout="50000" retries="2" registry="seoZookeeperAddress" group="homepage"  check="false" />
+  <dubbo:reference id="prodSpecService" interface="com.gome.tapho.interfaces.spec.IProdSpecService" timeout="50000" retries="2" registry="seoZookeeperAddress" group="tapho" check="false" />
+  <dubbo:reference id="appraiseSEOService" interface="com.gome.qiantai.service.IAppraiseSEOService" timeout="50000" retries="2" registry="seoZookeeperAddress"  check="false" />
+  <dubbo:reference id="goodsQuestionSEOService" interface="com.gome.qiantai.service.IGoodsQuestionSEOService" timeout="50000" retries="2" registry="seoZookeeperAddress"  check="false" />
+  <dubbo:reference id="categoryDetailService" interface="com.gome.stage.interfaces.item.ICategoryDetailService" timeout="50000" retries="2" registry="seoZookeeperAddress"  check="false" />
+
+
+
+  <!-- 商品词 搜索接口 -->
+  <!-- 搜索dubbo接口 -->
+  <dubbo:reference id="dubboSearchService" interface="org.gome.search.dubbo.idl.DubboService"  registry="searchZookeeperAddress" version="1.0.0" check="false" timeout="10000" />
+  <!-- SEO商品词dubbo接口 -->
+  <dubbo:reference id="dubboProductWordService" interface="com.gome.seo.productword.interfaces.IProductWordDubboService"  registry="seoZookeeperAddress" check="false" timeout="10000" />
+  <dubbo:reference id="singleHttpClientUtilImpl" interface="com.gome.singleweb.service.SingleHttpClientUtil" timeout="10000" registry="seoZookeeperAddress" check="false" />
+
+
+  <dubbo:reference id="gomeNewProductRankService" interface="com.gome.stage.interfaces.seo.newrank.IGomeNewProductRankService" timeout="50000" retries="2" registry="rankZookeeperAddress" group="stageseorank" check="false" />
+  <dubbo:reference id="gomeSEOSaleRank" interface="com.gome.stage.interfaces.seo.newrank.IGomeSEOSaleRank" timeout="50000" retries="2" registry="rankZookeeperAddress" group="stageseorank" check="false" />
+
+</beans>
+

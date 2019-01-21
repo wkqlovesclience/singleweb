@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gomeJsConfig>
+<!-- JS定义 -->
+	<jsDefine>
+		<jsInfo id="gtabs" path="/js/g/ui/gtabs" domain="js"/>
+		<jsInfo id="gtabsLite" path="/js/g/ui/gtabsLite" domain="js"/>
+		<jsInfo id="gRoll" path="/js/g/ui/gRoll" domain="js"/>
+		<!-- jquery 核心功能 -->
+		<jsInfo id="jqueryM" path="/js/g/jquery/jqueryM" domain="js"/>
+		<!-- 鼠标触发效果 菜单 -->
+		<jsInfo id="ghover" path="/js/n/firstPage/ghover" domain="js"/>
+		<!-- 点击显示 -->
+		<jsInfo id="gclickshow" path="/js/n/firstPage/gclickshow" domain="js"/>
+		<!-- 购物车超出隐藏 -->
+		<jsInfo id="overflowauto" path="/js/n/firstPage/overflowauto" domain="js"/>
+		<!-- 替换图片 -->
+		<jsInfo id="greplaceimg" path="/js/n/firstPage/greplaceimg" domain="js"/>
+		<jsInfo id="media" path="/js/n/firstPage/media" domain="js"/>
+		<!-- 延迟加载图片 -->
+		<jsInfo id="glaterimg" path="/js/n/firstPage/glaterimg" domain="js"/>
+		<jsInfo id="gLoad" path="/js/g/unit/gLoad" domain="js"/>
+		<!-- 搜索 -->
+		<jsInfo id="gomeAutopoint" path="/js/n/firstPage/searchAutoPoint" domain="js"/>
+		<!--cookie -->
+		<jsInfo id="cookie" path="/js/g/jquery/jquery.cookie" domain="js"/>
+		<!-- 购物车 -->
+		<jsInfo id="gomecart" path="/js/n/firstPage/gcart" domain="js"/>
+		<!-- 顶部广告拉伸 -->
+		<jsInfo id="adslide" path="/js/n/firstPage/adslide" domain="js"/>
+		<!-- 在线客服链接跳转 -->
+		<jsInfo id="headN" path="/js/n/firstPage/headN" domain="js"/>
+		<!-- 输入框焦点提示 -->
+		<jsInfo id="ginputfocus" path="/js/n/firstPage/ginputfocus" domain="js"/>
+		<!-- 限时抢购倒计时JS -->
+		<jsInfo id="gQgjs" path="/js/n/firstPage/gXsqg" domain="js"/>
+		<!-- login in  -->
+		<jsInfo id="signtop" path="/js/n/firstPage/signtop" domain="js"/>
+		<!-- search  -->
+		<jsInfo id="searchN" path="/js/n/firstPage/searchN" domain="js"/>
+		<jsInfo id="gpsearchN" path="/js/n/firstPage/groupsearchN" domain="js"/>
+		<!-- 楼层加载 -->
+		<jsInfo id="floors" path="/js/n/firstPage/floors" domain="js"/>	
+		<!-- 八叉乐 -->	
+		<jsInfo id="scode" path="/js/gz/adobe/s_code-gz" domain="js"/>
+		<jsInfo id="gshowhide" path="/js/n/firstPage/gshowhide" domain="js"/>
+		<!-- 商品咨询 -->
+		<jsInfo id="prdAdvice" path="/js/n/detail/productAdvice" domain="js"/>
+		<!--套购插件 -->
+		<jsInfo id="gTg" path="/js/g/ui/gTg" domain="js"/>
+		<!-- 倒计时插件 -->
+		<jsInfo id="gTime" path="/js/g/unit/gTime" domain="js"/>
+		<!-- 详情页购买插件 -->
+		<jsInfo id="purchase" path="/js/n/detail/purchase" domain="js"/>
+		<jsInfo id="prepurchase" path="/js/n/detail/prepurchase" domain="js"/>
+		<!-- 详情页套购 -->
+		<jsInfo id="rltprd" path="/js/n/detail/rltprd" domain="js"/>
+		<!-- 商品详情页图片放大镜 -->
+		<jsInfo id="gmagnifier" path="/js/g/ui/gmagnifier" domain="js"/>
+		<!--商品数量增减 -->
+		<jsInfo id="gAddCut" path="/js/n/firstPage/gAddCut" domain="js"/>
+		<!-- 详情页 > fixed -->
+		<jsInfo id="gfixed" path="/js/n/detail/gfixed" domain="js"/>
+		<!-- 详情页 > 评价 -->
+		<jsInfo id="dtcommend" path="/js/n/detail/dtcommend" domain="js"/>
+		<!-- js form plugin -->
+		<jsInfo id="jquery.form" path="/js/gome/jquery.form" domain="js"/>
+		<!-- 详情页 > 分页-->
+		<jsInfo id="gPage" path="/js/g/unit/gPage" domain="js"/>
+		<!-- 商品详情页库存插件 -->
+		<jsInfo id="gCity" path="/js/g/ui/gCity" domain="js"/>
+		<!-- 品牌旗舰店焦点图 -->
+		<jsInfo id="storeSlide" path="/js/flagship/slide" domain="js"/>
+		<!-- 八叉乐跟踪代码 -->
+		<jsInfo id="mbox" path="/js/gome/mbox" domain="js"/>
+		<jsInfo id="searchpage" path="/js/n/search/searchpage" domain="js"/>	
+		<!-- 企业频道 -->
+		<jsInfo id="eOther" path="/js/n/enterprise/eOther" domain="js"/>
+		<!--团购数据过滤  -->
+		<jsInfo id="grouprender" path="/js/n/groupon/grouponlist" domain="js"/>
+		<!-- 促销专区页面 -->
+		<jsInfo id="fSale" path="/js/n/flashsale/fSale" domain="js"/>
+		<!-- gslider -->
+		<jsInfo id="gSlider" path="/js/g/ui/gSlider" domain="js"/>
+		<!-- 透明度切换slider -->
+		<jsInfo id="opSlider" path="/js/g/ui/opSlider" domain="js"/>
+		<!-- 返回顶部 -->
+		<jsInfo id="gbackTop" path="/js/n/gbackTop" domain="js"/>
+		<jsInfo id="curNav" path="/js/g/ui/curNav" domain="js"/>
+		<!-- iehtml5-->
+		<jsInfo id="iehtml5" path="/js/gome/iehtml5" domain="js"/>
+		<!-- 模板引擎 -->
+		<jsInfo id="template" path="/js/n/package/template" domain="js"/>
+		<!-- 分类模板 -->
+		<jsInfo id="templateNav" path="/js/n/firstPage/templateNav" domain="js"/>
+		<!-- 对比栏&&浏览 -->
+		<jsInfo id="detailExtend" path="/js/n/detail/detail-extend" domain="js"/>
+		<!-- 对比栏&&浏览前端组修改 -->
+		<jsInfo id="detailExtendQd" path="/js/n/detail/detail-extend_qd" domain="js"/>
+		<!-- 弹出层锁屏插件 -->
+		<jsInfo id="gPop" path="/js/g/ui/gPop" domain="js"/>
+		<!-- 团购评价 -->
+		<jsInfo id="dtcommendGroup" path="/js/n/groupon/dtcommendgroup" domain="js"/>
+		<!--超级卖场js声明 -->
+		<jsInfo id="waypoints" path="/js/g/ui/waypoints" domain="js"/>
+		<!--品牌街slide -->
+		<jsInfo id="slide" path="/js/g/unit/slide" domain="js"/>
+		<!--ie json字符串-->	
+		<jsInfo id="json3" path="/js/g/unit/json3" domain="js"/>		
+		<!--  残次品详情页 > 评价 -->
+		<jsInfo id="defectCommend" path="/js/n/defectware/dtcommend" domain="js"/>
+		<!--  残次品详情页 -->
+		<jsInfo id="defectDetailPage" path="/js/n/defectware/defectDetail" domain="js"/>
+		<!--残次品pagination -->
+		<jsInfo id="pagination" path="/js/g/unit/jquery.pagination" domain="js"/>	
+		<!-- 空的js，由于清用户本地缓存 -->
+		<jsInfo id="blank" path="/js/n/detail/blank" domain="js"/>
+		<!-- supermarket 超市-->
+		<jsInfo id="supermarketJs" path="/js/n/supermarket/supermarket" domain="js"/>
+	</jsDefine>
+	<!--JS合并配置 -->
+	<jsMerge>
+		<merge id="firstOther"  domain="js" path="/js/n/firstOther" mergeJs="gtabsLite,gTime,opSlider"/>
+		<merge id="header"  domain="js" path="/js/n/header" mergeJs="template,templateNav,cookie,jquery.form,json3,gLoad,gomeAutopoint,searchN,headN,adslide,signtop,gomecart,gclickshow,ghover,ginputfocus,glaterimg,greplaceimg,gshowhide,gbackTop,curNav,gSlider,gPop"/>
+		<merge id="goodsDetail" domain="js" path="/js/n/goodsDetail" mergeJs="gtabs,gLoad,gAddCut,jquery.form,purchase,prdAdvice,gTg,rltprd,gmagnifier,gfixed,dtcommend,gPage,gCity,gRoll,detailExtendQd"/>
+		<merge id="preDetail" domain="js" path="/js/n/goodsDetail" mergeJs="gtabs,gLoad,gAddCut,jquery.form,prepurchase,gTime,prdAdvice,gTg,gmagnifier,gfixed,dtcommend,gPage,gCity,gRoll"/>
+		<merge id="searchResult" domain="js" path="/js/n/searchResult" mergeJs="jquery.form,gCity,searchpage"/>
+		<merge id="grouplistPage" domain="js" path="/js/n/grouplistPage" mergeJs="cookie,ghover,gomeAutopoint,gpsearchN,headN,signtop,gtabs,gLoad,glaterimg,gshowhide,ginputfocus,gclickshow,gTime,grouprender,dtcommendGroup,gPage" />
+		<merge id="enterprise"  domain="js" path="/js/n/enterprise/enterprise" mergeJs="gtabs,eOther"/>
+		<merge id="floorNew"  domain="js" path="/js/n/floorNew" mergeJs="cookie,gRoll,gLoad,floors,gtabs,gomeAutopoint,searchN,headN,adslide,gclickshow,ghover,ginputfocus,glaterimg,greplaceimg,gTg,gTime,overflowauto,gQgjs"/>
+		<merge id="flashsalePage"  domain="js" path="/js/n/flashsale/flashsalePage" mergeJs="gRoll,gtabs,gTime,fSale"/>
+		<merge id="prdAppraisal"  domain="js" path="/js/n/flashsale/prdAppraisal" mergeJs="gPage"/>
+		<merge id="bigmarkets" domain="js" path="/js/n/hypermarket" mergeJs="gSlider,opSlider,gLoad,waypoints,gTime"/>		
+		<merge id="furnishingModules" domain="js" path="/js/n/furnishing" mergeJs="gSlider,opSlider,gLoad,gtabsLite,waypoints,gTime"/>
+		<merge id="brandstreetPage" domain="js" path="/js/n/brandstreet" mergeJs="opSlider,gtabsLite"/>
+		<merge id="clothingcityPage" domain="js" path="/js/n/clothingcity" mergeJs="opSlider,gtabsLite,waypoints,slide"/>
+		<merge id="defectwarePage" domain="js" path="/js/n/defectware" mergeJs="opSlider,gCity,pagination"/>	
+		<merge id="defectwaredetail" domain="js" path="/js/n/defectDetails" mergeJs="gtabs,gLoad,jquery.form,gmagnifier,gfixed,gPage,gCity,gRoll,defectDetailPage,defectCommend"/>
+		<merge id="supermarket" domain="js" path="/js/n/supermarket/supermarket" mergeJs="gTime,scode,supermarketJs"/>
+	</jsMerge> 
+	<!-- js声明 -->
+	<jsImport>
+		<import id="hdr" jsIds="jqueryM,header"/>
+		<import id="firstPage" jsIds="jqueryM,header,firstOther,scode"/>
+		<import id="goodsDetailpage" jsIds="jqueryM,header,goodsDetail,mbox,scode"/>
+		<import id="preDetailpage" jsIds="jqueryM,header,preDetail,scode"/>
+		<import id="prdAppraisalpage" jsIds="jqueryM,header,prdAppraisal,mbox,scode"/>
+		<import id="searchResultPage" jsIds="jqueryM,header,searchResult,scode"/>
+		<import id="gplist" jsIds="jqueryM,grouplistPage,scode"/>
+		<import id="groupPage" jsIds="jqueryM,scode"/>
+		<import id="enterpriseChannle" jsIds="jqueryM,header,enterprise"/>
+		<import id="flagshipindex" jsIds="jqueryM,header,storeSlide" />
+		<!-- 促销专区页面 -->
+		<import id="flashsale" jsIds="jqueryM,header,flashsalePage"/>
+		<import id="brandZone" jsIds="jqueryM,header,gtabs" />
+		<!-- 对比页 -->
+		<import id="compare" jsIds="jqueryM,header" />
+		<!-- 大图页 -->
+		<import id="detailBigimg" jsIds="jqueryM,header,gRoll" />
+		<import id="hypermarket" jsIds="jqueryM,header,bigmarkets" /> 
+		<import id="furnishing" jsIds="jqueryM,header,furnishingModules" /> 
+		<import id="brandstreet" jsIds="jqueryM,header,brandstreetPage" />
+		<import id="clothingcity" jsIds="jqueryM,header,clothingcityPage" />
+		<import id="defectware" jsIds="jqueryM,header,defectwarePage" />
+		<import id="defectDetail" jsIds="jqueryM,header,defectwaredetail,mbox,scode" />
+		<!-- supermarket 超市-->
+		<import id="supermarketPage" jsIds="jqueryM,header,supermarket" />
+	</jsImport>
+	<!--页面需要引入的JS配置 -->
+	<jsPage>
+		<page id="hdr" jsIds=""/>
+		<page id="firstPage" jsIds=""/>
+		<page id="goodsDetailpage" jsIds=""/>
+		<page id="preDetailpage" jsIds=""/>
+		<page id="searchResultPage" jsIds=""/>
+		<page id="gplist" jsIds=""/>
+		<page id="gpdetail" jsIds=""/>
+		<page id="enterpriseChannle" jsIds=""/>
+		<!-- 旗舰店js配置 -->
+		<page id="flagshipindex" jsIds=""/> 
+		<!-- 促销专区页面 -->
+		<page id="flashsale" jsIds=""/>
+		<page id="brandZone" jsIds=""/>
+		<!-- 对比页 -->
+		<page id="compare" jsIds=""/>
+		<!-- 大图页 -->
+		<page id="detailBigimg" jsIds=""/>
+		<!-- 超级卖场 -->
+		<page id="hypermarket" jsIds="" />
+		<!-- 家居城 -->
+		<page id="furnishing" jsIds="" />
+		<!-- 品牌街 -->
+		<page id="brandstreet" jsIds="" />
+		<!-- 服装城 -->
+		<page id="clothingcity" jsIds="" />
+		<!-- 残次品 -->
+		<page id="defectware" jsIds="" />
+		<!-- 残次品详情页-->
+		<page id="defectDetail" jsIds=""/>
+		<!-- supermarket 超市-->
+		<page id="supermarketPage" jsIds=""/>
+		
+	</jsPage>
+</gomeJsConfig>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gome.stage.mapper.rank.GroupHotLinksMapper" >
+
+	<resultMap id="grouphotlink" type="com.gome.stage.entity.rank.GroupHotLinks">
+		<result property="id" column="ID"/>
+		<result property="groupid" column="GROUP_ID"/>
+		<result property="groupName" column="GROUP_NAME"/>
+		<result property="linkName" column="LINK_NAME"/>
+		<result property="linkUrl" column="LINK_URL"/>
+		<result property="priority" column="PRIORITY"/>
+		<result property="isvalid" column="IS_VALID"/>
+		<result property="createTime" column="CREATE_TIME"/>
+		<result property="updateTime" column="UPDATE_TIME"/>
+	</resultMap>
+
+	<sql id="selectGroupHotLinksSql">
+	ID,GROUP_ID,GROUP_NAME,LINK_NAME,LINK_URL,PRIORITY,IS_VALID,CREATE_TIME,UPDATE_TIME
+	</sql>
+
+	<select id="getGroupHotLinksListbygroupid" resultMap="grouphotlink">
+		SELECT
+		<include refid="selectGroupHotLinksSql"/>
+		FROM
+		t_group_hot_links
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+
+			<if test="groupid != null">AND GROUP_ID=#{groupid} </if>
+			and IS_VALID = 1
+
+		</trim>
+
+		order by PRIORITY DESC
+	</select>
+</mapper>

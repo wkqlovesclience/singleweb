@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="single-web:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>single-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="single-web.war">
+      <element id="artifact" artifact-name="single-web:war exploded" />
+    </root>
+  </artifact>
+</component>
